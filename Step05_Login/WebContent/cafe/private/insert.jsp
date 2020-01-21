@@ -16,6 +16,8 @@
 	//2. DB 에 글 정보를 저장하고
 	boolean isSuccess=CafeDao.getInstance().insert(dto);
 	//3. 응답하기 
+	
+	request.setAttribute("isSuccess", isSuccess);
 %>    
 <!DOCTYPE html>
 <html>
@@ -26,18 +28,21 @@
 </head>
 <body>
 <div class="container">
-	<%if(isSuccess){ %>
-		<script>
-			alert("저장 하였습니다.");
-			location.href="${pageContext.request.contextPath }/cafe/list.jsp";
-		</script>
-	<%}else{ %>
-		<h1>Alert</h1>
-		<p class="alert alert-danger">
-			글 정보 저장 실패!
-			<a class="alert-link" href="insertform.jsp">다시 작성 하기</a>
-		</p>
-	<%} %>
+	<c:choose>
+		<c:when test="${isSuccess }">
+			<script>
+				alert("저장 하였습니다.");
+				location.href="${pageContext.request.contextPath }/cafe/list.jsp";
+			</script>
+		</c:when>
+		<c:otherwise>
+			<h1>Alert</h1>
+			<p class="alert alert-danger">
+				글 수정 실패!
+				<a class="alert-link" href="updateform.jsp?num=${param.num }">다시 시도</a>
+			</p>
+		</c:otherwise>
+	</c:choose>
 </div>
 </body>
 </html>

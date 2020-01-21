@@ -2,6 +2,7 @@
 <%@page import="test.cafe.dto.CafeDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>   
 <%
 	//1. 폼 전송되는 수정할 글 정보를 파라미터에서 추출한다.
 	int num=Integer.parseInt(request.getParameter("num"));
@@ -14,6 +15,8 @@
  	dto.setContent(content);
  	boolean isSuccess=CafeDao.getInstance().update(dto);
  	//3. 응답한다.
+ 	
+ 	request.setAttribute("isSuccess", isSuccess);
 %>    
 <!DOCTYPE html>
 <html>
@@ -24,18 +27,21 @@
 </head>
 <body>
 <div class="container">
-	<%if(isSuccess){ %>
-		<script>
-			alert("글을 수정했습니다.");
-			location.href="${pageContext.request.contextPath }/cafe/detail.jsp?num=<%=num%>";
-		</script>
-	<%}else{ %>
-		<h1>Alert</h1>
-		<p class="alert alert-danger">
-			글 수정 실패!
-			<a class="alert-link" href="updateform.jsp?num=<%=num %>">다시 시도</a>
-		</p>
-	<%} %>
+	<c:choose>
+		<c:when test="${isSuccess }">
+			<script>
+				alert("글을 수정했습니다.");
+				location.href="${pageContext.request.contextPath }/cafe/detail.jsp?num=${param.num}";
+			</script>
+		</c:when>
+		<c:otherwise>
+			<h1>Alert</h1>
+			<p class="alert alert-danger">
+				글 수정 실패!
+				<a class="alert-link" href="updateform.jsp?num=${param.num }">다시 시도</a>
+			</p>
+		</c:otherwise>
+	</c:choose>
 </div>
 </body>
 </html>

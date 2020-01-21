@@ -22,6 +22,8 @@
 	//2. DB 에서 삭제 한다.
 	boolean isSuccess=CafeDao.getInstance().delete(num);
 	//3. 응답한다
+	
+	request.setAttribute("isSuccess", isSuccess);
 %>    
 <!DOCTYPE html>
 <html>
@@ -32,19 +34,21 @@
 </head>
 <body>
 <div class="container">
-	<%if(isSuccess){ %>
-		<script>
-			alert("<%=num%> 번 글을 삭제 했습니다.");
-			location.href="${pageContext.request.contextPath }/cafe/list.jsp";
-		</script>
-	<%}else{ %>
-		<h1>Alert</h1>
-		<p class="alert alert-danger">
-			글 삭제 실패!
-			<a class="alert-link" 
-				href="${pageContext.request.contextPath }/cafe/detail.jsp?num=<%=num %>">돌아 가기</a>
-		</p>
-	<%} %>
+	<c:choose>
+		<c:when test="${isSuccess }">
+			<script>
+				alert("저장 하였습니다.");
+				location.href="${pageContext.request.contextPath }/cafe/list.jsp";
+			</script>
+		</c:when>
+		<c:otherwise>
+			<h1>Alert</h1>
+			<p class="alert alert-danger">
+				글 수정 실패!
+				<a class="alert-link" href="updateform.jsp?num=${param.num }">다시 시도</a>
+			</p>
+		</c:otherwise>
+	</c:choose>
 </div>
 </body>
 </html>
