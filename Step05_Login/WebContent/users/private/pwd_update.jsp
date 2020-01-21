@@ -2,6 +2,7 @@
 <%@page import="test.users.dao.UsersDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <%
 	//세션 영역에서 로그인된 id 읽어오기
 	String id=(String)session.getAttribute("id");
@@ -18,6 +19,8 @@
 		dto.setPwd(newPwd);
 		UsersDao.getInstance().updatePwd(dto);
 	}
+	
+	request.setAttribute("isValid", isValid);
 %>    
 <!DOCTYPE html>
 <html>
@@ -27,17 +30,20 @@
 </head>
 <body>
 <div class="container">
-	<%if(isValid){ %>
-		<script>
-			alert("비밀 번호를 수정 했습니다.");
-			location.href="info.jsp";
-		</script>
-	<%}else{%>
-		<script>
-			alert("기존 비밀번호가 일치 하지 않아요!");
-			location.href="pwd_updateform.jsp";
-		</script>
-	<%}%>
+	<c:choose>
+		<c:when test="${isValid }">
+			<script>
+				alert("비밀 번호를 수정 했습니다.");
+				location.href="info.jsp";
+			</script>
+		</c:when>
+		<c:otherwise>
+			<script>
+				alert("기존 비밀번호가 일치 하지 않아요!");
+				location.href="pwd_updateform.jsp";
+			</script>
+		</c:otherwise>
+	</c:choose>
 </div>
 </body>
 </html>

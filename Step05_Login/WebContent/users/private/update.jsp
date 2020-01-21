@@ -2,6 +2,7 @@
 <%@page import="test.users.dto.UsersDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <%
 	//1. 폼 전송되는 아이디와 이메일 주소를 읽어와서
 	String id=request.getParameter("id");
@@ -12,6 +13,8 @@
 	//2. DB에 수정 반영하고
 	boolean isSuccess=UsersDao.getInstance().update(dto);
 	//3. 응답한다. 
+	
+	request.setAttribute("isSuccess", isSuccess);
 %>
 <!DOCTYPE html>
 <html>
@@ -21,18 +24,22 @@
 </head>
 <body>
 <div class="container">
-	<%if(isSuccess){ %>
-		<script>
-			alert("회원 정보를 수정했습니다.");
-			location.href="info.jsp";
-		</script>
-	<%}else{ %>
-		<h1>Alert</h1>
-		<p>
-			회원정보 수정 실패!
-			<a href="updateform.jsp">다시 시도 하러가기</a>
-		</p>
-	<%} %>
+	<c:choose>
+		<c:when test="${isSuccess }">
+			<script>
+				alert("회원 정보를 수정했습니다.");
+				location.href="info.jsp";
+			</script>
+		</c:when>
+		<c:otherwise>
+			<h1>Alert</h1>
+			<p>
+				회원정보 수정 실패!
+				<a href="updateform.jsp">다시 시도 하러가기</a>
+			</p>
+		</c:otherwise>
+	</c:choose>
+
 </div>
 </body>
 </html>

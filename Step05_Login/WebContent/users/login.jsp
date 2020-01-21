@@ -3,6 +3,7 @@
 <%@page import="test.users.dto.UsersDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <%
 	//목적지 정보
 	String url=request.getParameter("url");
@@ -42,6 +43,9 @@
 	}
 	response.addCookie(idCook);
 	response.addCookie(pwdCook);
+	
+	request.setAttribute("encodedUrl", encodedUrl);
+	request.setAttribute("isValid", isValid);
 %>    
 <!DOCTYPE html>
 <html>
@@ -52,17 +56,20 @@
 <body>
 <div class="container">
 	<h1>Alert</h1>
-	<%if(isValid){ %>
-		<p>
-			<strong><%=id %></strong> 회원님 로그인 되었습니다.
-			<a href="<%=url %>">확인</a>
-		</p>
-	<%}else{ %>
-		<p>
-			아이디 혹은 비밀번호가 틀려요!
-			<a href="loginform.jsp?url=<%=encodedUrl %>">다시 로그인 하러 가기</a>
-		</p>
-	<%} %>
+	<c:choose>
+		<c:when test="${isValid }">
+			<p>
+				<strong>${param.id }</strong> 회원님 로그인 되었습니다.
+				<a href="${param.url }">확인</a>
+			</p>
+		</c:when>
+		<c:otherwise>
+			<p>
+				아이디 혹은 비밀번호가 틀려요!
+				<a href="loginform.jsp?url=${encodedUrl }">다시 로그인 하러 가기</a>
+			</p>
+		</c:otherwise>
+	</c:choose>
 </div>
 </body>
 </html>

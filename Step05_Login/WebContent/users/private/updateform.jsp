@@ -2,6 +2,7 @@
 <%@page import="test.users.dto.UsersDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,19 +15,21 @@
 	String id=(String)session.getAttribute("id");
 	//  id 를 이용해서 가입 정보 얻어오기
 	UsersDto dto=UsersDao.getInstance().getData(id);
+	
+	request.setAttribute("dto", dto);
 %>
 <div class="container">
 	<h1>회원정보 수정폼</h1>
 	<form action="update.jsp" method="post">
-		<input type="hidden" name="id" value="<%=id %>"/>
+		<input type="hidden" name="id" value="${id }"/>
 		<div>
 			<label for="id">아이디</label>
-			<input type="text" id="id" value="<%=id %>" disabled/>
+			<input type="text" id="id" value="${id }" disabled/>
 		</div>
 		<div>
 			<label for="email">이메일</label>
 			<input type="text" id="email" name="email"
-				value="<%=dto.getEmail() %>"/>
+				value="${dto.email }"/>
 		</div>
 		<button type="submit">수정확인</button>
 		<button type="reset">취소</button>

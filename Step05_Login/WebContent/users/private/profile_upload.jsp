@@ -7,6 +7,7 @@
 <%@page import="org.apache.commons.fileupload.servlet.ServletFileUpload"%>
 <%@ page language="java" contentType="application/json; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <%
 	//업로드 설정
 	final int MEMORY_THRESHOLD   = 1024 * 1024 * 3;  // 3MB
@@ -79,8 +80,10 @@
 		response.sendError(500, e.getMessage());
 		return ;
 	}
+	
+	request.setAttribute("savedPath", savedPath);
 %>    
-{"savedPath":"<%=savedPath %>"}
+{"savedPath":"${savedPath }"}
 
 
 

@@ -2,6 +2,7 @@
 <%@page import="test.users.dto.UsersDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <%
 	//1. 폼 전송되는 회원 가입 정보를 읽어온다.
 	String id=request.getParameter("id");
@@ -14,6 +15,9 @@
 	dto.setEmail(email);
 	boolean isSuccess=UsersDao.getInstance().insert(dto);
 	//3. 응답하기 
+	
+	request.setAttribute("isSuccess", isSuccess);
+	request.setAttribute("dto", dto);
 %>
 <!DOCTYPE html>
 <html>
@@ -24,17 +28,21 @@
 <body>
 <div class="container">
 	<h1>Alert</h1>
-	<%if(isSuccess){ %>
-		<p> 
-			<strong><%=id %></strong> 회원님 가입 되었습니다.
-			<a href="loginform.jsp">로그인 하러 가기</a>
-		</p>
-	<%}else{ %>
-		<p>
-			회원 가입 실패!
-			<a href="signup_form.jsp">다시 가입하러 가기</a>
-		</p>
-	<%} %>
+	<c:choose>
+		<c:when test="${isSuccess }">
+			<p> 
+				<strong>${id }</strong> 회원님 가입 되었습니다.
+				<a href="loginform.jsp">로그인 하러 가기</a>
+			</p>
+		</c:when>
+		<c:otherwise>
+			<p>
+				회원 가입 실패!
+				<a href="signup_form.jsp">다시 가입하러 가기</a>
+			</p>
+		</c:otherwise>
+	</c:choose>
+	
 </div>
 </body>
 </html>
