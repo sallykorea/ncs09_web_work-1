@@ -7,6 +7,7 @@
 <%@page import="org.apache.commons.fileupload.servlet.ServletFileUpload"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <%
 	//업로드 설정
 	final int MEMORY_THRESHOLD   = 1024 * 1024 * 3;  // 3MB
@@ -90,6 +91,9 @@
 		response.sendError(500, e.getMessage());
 		return ;
 	}
+	
+	request.setAttribute("isSuccess", isSuccess);
+	request.setAttribute("dto", dto);
 %>
 <!DOCTYPE html>
 <html>
@@ -101,18 +105,21 @@
 <body>
 <div class="container">
 	<h1>Alert</h1>
-	<%if(isSuccess){ %>
-		<p class="alert alert-success">
-			<strong><%=dto.getOrgFileName() %></strong>
-			파일을 저장 했습니다.
-			<a class="alert-link" href="../list.jsp">목록보기</a>
-		</p>
-	<%}else{%>
-		<p class="alert alert-danger">
-			파일 정보를 DB 에 저장하다가 오류가 발생했습니다.
-			<a class="alert-link" href="upload_form.jsp">다시 업로드 하러 가기</a>
-		</p>
-	<%}%>
+	<c:choose>
+		<c:when test="${isSuccess }">
+			<p class="alert alert-success">
+				<strong>${dto.orgFileName }</strong>
+				파일을 저장 했습니다.
+				<a class="alert-link" href="../list.jsp">목록보기</a>
+			</p>
+		</c:when>
+		<c:otherwise>
+			<p class="alert alert-danger">
+				파일 정보를 DB 에 저장하다가 오류가 발생했습니다.
+				<a class="alert-link" href="upload_form.jsp">다시 업로드 하러 가기</a>
+			</p>
+		</c:otherwise>
+	</c:choose>
 </div>
 </body>
 </html>
