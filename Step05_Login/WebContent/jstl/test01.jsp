@@ -4,7 +4,7 @@
 	core libaray를 접두어 'c'로 불러오기 prefix는 마음대로 정할 수 있으나 
 	통상 'c'로 한다.
 --%>   
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
