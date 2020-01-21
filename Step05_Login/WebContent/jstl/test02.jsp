@@ -11,12 +11,30 @@
 	names.add("원숭이");
 	
 	request.setAttribute("names", names);
+	
+	String[] lastNames=new String[]{"kim","lee","park","jung"};
+	//List<String> lastNames=new ArrayList<>();
+	//lastNames.add("kim");
+	//lastNames.add("lee");
+	//lastNames.add("park");
+	//lastNames.add("jung");
+	request.setAttribute("lastNames", lastNames);
 %>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>forEach 활용</title>
+<style type="text/css">
+	.one{
+		list-style:none;
+		padding-left:0px;
+	}
+	.one li {
+	padding-right: 10px;
+    float: left;
+}
+</style>
 </head>
 <body>
 <h3>ForEach 활용</h3>
@@ -41,7 +59,23 @@
 			${tmp }
 		</li>
 	</c:forEach>
-	
+<h3>kim | lee | park | jung 으로 출력하기</h3>
+<ul class="one">
+	<c:forEach var="tmp" items="${requestScope.lastNames }" varStatus="status">
+		<c:choose>
+			<c:when test="${status.last }">
+				<li>
+					${tmp }
+				</li>
+			</c:when>
+			<c:otherwise>
+				<li>
+					${tmp } | 
+				</li>
+			</c:otherwise>
+		</c:choose>
+	</c:forEach>
 </ul>
+
 </body>
 </html>
