@@ -30,6 +30,8 @@
 		<li><a href="el01">el 테스트</a></li>
 		<li><a href="el02">el 테스트2</a></li>
 		<li><a href="el03">el 테스트3</a></li>
+		<li><a href="el/test04.jsp">el 테스트4(jsp)</a></li>
+		<li><a href="jstl/test01.jsp">JSTL 테스트</a></li>
 	</ul>
 </div>
 </body>
