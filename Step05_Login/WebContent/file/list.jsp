@@ -3,7 +3,8 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>  
 <%
 	//세션에 있는 아이디 읽어오기 (로그인 하지 않았으면 null 이다)
 	String id=(String)session.getAttribute("id");
@@ -92,7 +93,7 @@
 							${tmp.orgFileName }
 						</a>
 					</td>
-					<td>${tmp.fileSize }</td>
+					<td><fmt:formatNumber value="${tmp.fileSize }"/> byte</td>
 					<td>${tmp.downCount }</td>
 					<td>${tmp.regdate }</td>
 					<td>
