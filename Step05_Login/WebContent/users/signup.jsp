@@ -31,7 +31,7 @@
 	<c:choose>
 		<c:when test="${isSuccess }">
 			<p> 
-				<strong>${id }</strong> 회원님 가입 되었습니다.
+				<strong>${param.id }</strong> 회원님 가입 되었습니다.
 				<a href="loginform.jsp">로그인 하러 가기</a>
 			</p>
 		</c:when>
