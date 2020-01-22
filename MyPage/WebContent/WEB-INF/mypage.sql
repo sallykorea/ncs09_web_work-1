@@ -1,0 +1,11 @@
+CREATE TABLE product(
+num NUMBER PRIMARY KEY,
+photo VARCHAR2(50) NOT NULL, 
+title VARCHAR2(100) NOT NULL, 
+price VARCHAR2(100) NOT NULL,
+quantity NUMBER NOT NULL,
+content CLOB,
+regdate DATE
+);
+
+CREATE SEQUENCE product_seq;

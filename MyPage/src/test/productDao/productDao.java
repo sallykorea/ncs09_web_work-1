@@ -1,39 +1,42 @@
-package test.usersdao;
+package test.productDao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
-import test.usersdto.UsersDto;
+import test.productDto.productDto;
 import test.util.DbcpBean;
 
-public class UsersDao {
-
-	private static UsersDao dao;
-
-	private UsersDao() {}
-	public static UsersDao getInstance() {
+public class productDao {
+	private static productDao dao;
+	private productDao() {}
+	public static productDao getInstance() {
 		if(dao==null) {
-			dao=new UsersDao();
+			dao=new productDao();
 		}
 		return dao;
 	}
 	
-	public boolean isValid(UsersDto dto) {
-		boolean isValid=false;
+	public List<productDto> getList() {
+		List<productDto> list=new ArrayList<productDto>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			conn = new DbcpBean().getConn();
-			String sql = "SELECT * FROM users"
-					+ " WHERE id=?";
+			String sql = "SELECT * FROM product";
 			pstmt = conn.prepareStatement(sql);
-			// ? 에 값 바인딩 
-			pstmt.setString(1, dto.getId());
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				isValid=true;
+				productDto dto=new productDto();
+				dto.setNum(rs.getInt("num"));
+				dto.setPhoto(rs.getString("photo"));
+				dto.setTitle(rs.getString("title"));
+				dto.setPrice(rs.getString("price"));
+				dto.setContent(rs.getString("content"));
+				list.add(dto);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -49,24 +52,26 @@ public class UsersDao {
 			} catch (Exception e) {
 			}
 		}
-		return isValid;
-
+		return list;
+		
 	}
 	
-	public boolean insert(UsersDto dto) {
+	public boolean insert(productDto dto) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int flag = 0;
 		try {
 			conn = new DbcpBean().getConn();
-			String sql = "INSERT INTO users"
-					+ " (id,pwd,email,regdate)"
-					+ " VALUES(?,?,?,SYSDATE)";
+			String sql = "INSERT INTO product"
+					+ " (num,photo,title,price,quantity,content,regdate)"
+					+ " VALUES(product_seq.NEXTVAL,?,?,?,?,?,SYSDATE)";
 			pstmt = conn.prepareStatement(sql);
 			// ? 에 값 바인딩 하기
-			pstmt.setString(1, dto.getId());
-			pstmt.setString(2, dto.getPwd());
-			pstmt.setString(3, dto.getEmail());
+			pstmt.setString(1, dto.getPhoto());
+			pstmt.setString(2, dto.getTitle());
+			pstmt.setString(3, dto.getPrice());
+			pstmt.setInt(4, dto.getQuantity());
+			pstmt.setString(5, dto.getContent());
 			flag = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -86,6 +91,5 @@ public class UsersDao {
 		}
 
 	}
-	
 	
 }

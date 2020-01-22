@@ -15,9 +15,9 @@
     <div class="container_hom_nav">
         <ul class="hom_nav_menu">
             <li><a href="index.jsp">Home</a></li>
-            <li><a href="todo/list.jsp">Todo</a></li>
-            <li><a href="album/list.jsp">Photo</a></li>
-            <li><a href="board/list.jsp">GuestBook</a></li>
+            <li><a href="product/updateProductForm.jsp">상품등록하기</a></li>
+            <li><a href="shop/list.jsp">상품 구매하기</a></li>
+            <li><a href="review/list.jsp">Review</a></li>
         </ul>
         <ul class="hom_nav_login">
             <li><a href="users/loginform.jsp">Login</a></li>
