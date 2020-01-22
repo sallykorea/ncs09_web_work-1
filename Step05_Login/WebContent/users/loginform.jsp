@@ -60,6 +60,7 @@
 		//로그인 성공후에 index.jsp 페이지로 보낼수 있도록 구성한다. 
 		url=request.getContextPath()+"/index.jsp";
 	}
+	
 	//아이디, 비밀번호가 쿠키에 저장되었는지 확인해서 저장 되었으면 폼에 출력한다.
 	Cookie[] cookies=request.getCookies();
 	//저장된 아이디와 비밀번호를 담을 변수 선언하고 초기값으로 빈 문자열 대입 
@@ -75,13 +76,15 @@
 		}
 	}
 	
+	request.setAttribute("url", url);
 	request.setAttribute("savedId", savedId);
 	request.setAttribute("savedPwd", savedPwd);
 %>
 <div class="container">
 	<form class="form-signin" action="login.jsp" method="post">
 		<%-- 폼 제출할때 목적지 정보도 같이 보내준다. --%>
-		<input type="hidden" name="url" value="${param.url }" />
+		<input type="hidden" name="url" value="${url }" />
+		
 		<h2 class="form-signin-heading">로그인 정보 입력</h2>
 		<label for="id" class="sr-only">아이디</label>
 		<input type="text" id="id" name="id" class="form-control" 

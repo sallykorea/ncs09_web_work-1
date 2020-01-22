@@ -21,10 +21,10 @@
 	
 	boolean isValid=UsersDao.getInstance().isValid(dto);
 	if(isValid){
-		//로그인 되었다는 의미에서 session 에 "id" 라는 키값으로 아이디를 저장한다.
 		session.setAttribute("id", id);
 	}
 	
+	request.setAttribute("url", url);
 	request.setAttribute("isValid", isValid);
 	request.setAttribute("encodedUrl", encodedUrl);
 %>    
@@ -39,7 +39,7 @@
 	<c:when test="${isValid }">
 		<p>
 			${param.id } 님 환영합니다!
-			<a href="${param.url }">확인</a>
+			<a href="${url }">확인</a>
 		</p>
 	</c:when>
 	<c:otherwise>

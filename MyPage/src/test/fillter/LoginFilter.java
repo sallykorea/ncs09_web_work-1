@@ -39,9 +39,7 @@ public class LoginFilter implements Filter{
 			}else {
 				encodedUrl=URLEncoder.encode(url+"?"+query);
 			}
-			System.out.println(url);
-			System.out.println(query);
-			System.out.println(encodedUrl);
+
 			HttpServletResponse response=(HttpServletResponse)resp;
 			String cPath=request.getContextPath();
 			//로그인 폼으로 리다일렉트 시켜준다.

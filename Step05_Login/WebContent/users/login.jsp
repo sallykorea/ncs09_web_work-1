@@ -10,6 +10,7 @@
 	if(url==null){
 		url=request.getContextPath()+"/index.jsp";
 	}
+	System.out.println(url);
 	//목적지 정보를 미리 인코딩 해 놓는다.
 	String encodedUrl=URLEncoder.encode(url);
 
@@ -44,6 +45,7 @@
 	response.addCookie(idCook);
 	response.addCookie(pwdCook);
 	
+	request.setAttribute("url", url);
 	request.setAttribute("encodedUrl", encodedUrl);
 	request.setAttribute("isValid", isValid);
 %>    
@@ -60,7 +62,8 @@
 		<c:when test="${isValid }">
 			<p>
 				<strong>${param.id }</strong> 회원님 로그인 되었습니다.
-				<a href="${param.url }">확인</a>
+				<a href="${url }">확인</a>
+				<p>${param.url }</p>
 			</p>
 		</c:when>
 		<c:otherwise>

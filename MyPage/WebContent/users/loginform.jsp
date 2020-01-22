@@ -6,6 +6,8 @@
 		//로그인 성공후에 index.jsp 페이지로 보낼수 있도록 구성한다. 
 		url=request.getContextPath()+"/index.jsp";
 	}
+	
+	request.setAttribute("url", url);
 %>    
 <!DOCTYPE html>
 <html>
@@ -16,7 +18,7 @@
 <body>
 <div class="container">
 	<form action="login.jsp" method="post">
-	<input type="hidden" name="url" value="${param.url }" />
+	<input type="hidden" name="url" value="${url }" />
 		<div>
 			<label for="id">아이디</label>
 			<input type="text" id="id" name="id" />

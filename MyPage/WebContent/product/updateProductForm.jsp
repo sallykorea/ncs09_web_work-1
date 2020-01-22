@@ -8,10 +8,10 @@
 </head>
 <body>
 <div class="container">
-	<form action="updateproduct.jsp">
+	<form action="updateproduct.jsp" method="post">
 		<div>
 			<label for="photo">사진</label>
-			<input type="file" id="photo" name="photo" />
+			<input type="file" id="photo" name="photo" accept=".jpg, .jpeg, .png, .JPG, .JPEG" />
 		</div>
 		<div>
 			<label for="title">제목</label>

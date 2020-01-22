@@ -30,7 +30,7 @@
 		<p>
 			<strong>${param.title }</strong> 상품을 등록하였습니다!
 		</p>
-		<a href="../shop/top_list.jsp">확인하기</a>
+		<a href="../shop/list.jsp">확인하기</a>
 	</c:when>
 	<c:otherwise>
 		<p>
