@@ -51,7 +51,6 @@
 							<img src="${pageContext.request.contextPath }<%=dto.getProfile()%>"/>
 						</c:otherwise>
 					</c:choose>
-					
 				</a>
 			</td>
 		</tr>

@@ -8,11 +8,6 @@
 <jsp:include page="../include/resource.jsp"></jsp:include>
 <style>
 	/* 프로필 이미지가 가로 세로 50px 인 원형으로 표시 될수 있도록  */
-	#profileLink img{
-		width: 50px;
-		height: 50px;
-		border-radius: 50%;
-	}
 	.productLink{
 		height: 90px;
 		width: auto;

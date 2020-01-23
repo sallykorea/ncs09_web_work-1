@@ -45,10 +45,12 @@
 					<td>
 						${tmp.title }
 						<div>
-							<a href="../product/updateProductForm.jsp?num=${tmp.num }">상품 편집하기</a>
+							<a href="../product/updateProductForm.jsp?num=${tmp.num }">상품수정</a>
 						</div>
 					</td>
-					<td>${tmp.price }</td>
+					<td>
+						${tmp.price }
+					</td>
 					<td>${tmp.content }</td>
 				</tr>
 			</c:forEach>
