@@ -19,8 +19,8 @@
     <div class="container_hom_nav">
         <ul class="hom_nav_menu">
             <li><a href="index.jsp">Home</a></li>
-            <li><a href="product/updateProductForm.jsp">상품등록하기</a></li>
-            <li><a href="shop/list.jsp">상품 구매하기</a></li>
+            <li><a href="product/insertProductForm.jsp">상품등록하기</a></li>
+            <li><a href="product/list.jsp">상품목록보기</a></li>
             <li><a href="review/list.jsp">Review</a></li>
         </ul>
 

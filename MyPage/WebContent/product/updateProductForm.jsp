@@ -4,34 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>updateProductForm.jsp</title>
+<title>Insert title here</title>
 </head>
 <body>
-<div class="container">
-	<form action="updateproduct.jsp" method="post">
-		<div>
-			<label for="photo">사진</label>
-			<input type="file" id="photo" name="photo" accept=".jpg, .jpeg, .png, .JPG, .JPEG" />
-		</div>
-		<div>
-			<label for="title">제목</label>
-			<input type="text" id="title" name="title" />
-		</div>
-		<div>
-			<label for="price">가격</label>
-			<input type="text" id="price" name="price" />
-		</div>
-		<div>
-			<label for="quantity">재고수량</label>
-			<input type="text" id="quantity" name="quantity" />
-		</div>
-		<div>
-			<label for="content">상품 설명</label>
-			<input type="text" id="content" name="content" />
-		</div>
-	<button type="submit">저장</button>
-	<a href="../index.jsp">취소</a>
-	</form>
-</div>
+
 </body>
 </html>
