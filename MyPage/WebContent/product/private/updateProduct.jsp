@@ -29,7 +29,7 @@
 		<p>
 			${param.title } 상품으로 수정되었습니다.
 		</p>
-		<a href="list.jsp">상품 목록으로 가기</a>
+		<a href="../list.jsp">상품 목록으로 가기</a>
 	</c:when>
 	<c:otherwise>
 		<p>

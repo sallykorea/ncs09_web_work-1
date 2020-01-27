@@ -11,6 +11,7 @@
 	int quantity=Integer.parseInt(request.getParameter("quantity"));
 	String content=request.getParameter("content");
 	
+	System.out.println(photo);
 	productDto dto=new productDto(0,photo,title,price,quantity,content,null);
 	boolean isSuccess=productDao.getInstance().insert(dto);
 	
@@ -28,16 +29,15 @@
 		<p>
 			<strong>${param.title }</strong> 상품을 등록하였습니다!
 		</p>
-		<a href="../product/list.jsp">확인하기</a>
+		<a href="../list.jsp">확인하기</a>
 	</c:when>
 	<c:otherwise>
 		<p>
 			상품 등록에 실패하였습니다.
 		</p>
-		
+		<a href="insertProductForm.jsp">재등록하기</a>
+		<a href="../../index.jsp">취소</a>
 	</c:otherwise>
 </c:choose>
-<a href="updateProductForm.jsp">재등록하기</a>
-<a href="../index.jsp">취소</a>
 </body>
 </html>

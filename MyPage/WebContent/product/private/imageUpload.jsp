@@ -56,8 +56,7 @@
 					//파일의 사이즈 
 					long fileSize=item.getSize();
 					//저장할 파일명을 겹치지 않게 지정한다.
-					String saveFileName=System.currentTimeMillis()+
-						orgFileName;
+					String saveFileName=System.currentTimeMillis()+orgFileName;
 					//파일 시스템에 저장할 전체 경로를 구성한다.
 					String filePath=uploadPath+File.separator+saveFileName;
 					//파일을 위의 경로에 실제로 저장한다.
@@ -76,6 +75,6 @@
 	}
 	
 	request.setAttribute("savedPath", savedPath);
-	System.out.println(savedPath);
+	System.out.println("savedPath : "+savedPath);
 %>    
 {"savedPath":"${savedPath }"}

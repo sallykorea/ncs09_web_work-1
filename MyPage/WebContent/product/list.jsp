@@ -45,7 +45,7 @@
 					<td>
 						${tmp.title }
 						<div>
-							<a href="../product/updateProductForm.jsp?num=${tmp.num }">상품수정</a>
+							<a href="${pageContext.request.contextPath }/product/private/updateProductForm.jsp?num=${tmp.num }">상품수정</a>
 						</div>
 					</td>
 					<td>
