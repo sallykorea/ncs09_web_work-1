@@ -135,3 +135,6 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/java,maven,windows,eclipse
+
+# /WEB-INF/lib/안에 있는 파일은 ignore 에서 제외한다.
+!*/WEB-INF/lib/*
