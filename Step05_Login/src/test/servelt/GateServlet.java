@@ -14,27 +14,24 @@ import test.cafe.dao.CafeDao;
 import test.cafe.dto.CafeDto;
 import test.controller.CafeListController;
 
-// .nhn 으로 끝나는 모든 요청을 처리할 서블릿 정의하기
+// .nhn 으로 끝나는 모든 요청을 처리할 서블릿 정의하기 
 @WebServlet("*.nhn")
 public class GateServlet extends HttpServlet{
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//요청 url을 조사한다
+	protected void service(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
 		String uri=request.getRequestURI();
-		//컨텍스트 경로의 길이
+		//컨텍스트 경로의 길이 
 		String cPath=request.getContextPath();
 		int cLength=cPath.length();
-		// 순수 요청 경로(컨텍스트 경로 제외, .nhn 제외)
+		// . 의 인덱스
 		int index=uri.indexOf(".");
-		
-		// context path를 제외하고 순수 요청 경로만 알아내기(cLength이상 index미만 까지 갖고 오기)
+		//순수 요청 경로 (컨텍스크 경로 제외, .nhn 제외)
 		String path=uri.substring(cLength, index);
-		
-		if(path.equals("/cafe/list")) {
-			new CafeListController().execute(request, response);
-			
+
+		if(path.equals("/cafe/list")) {//카페 글 목록보기 요청이라면
+			new CafeListController().execute(request, resp);
 		}else if(path.equals("/cafe/insertform")) {
-			
+
 		}
 	}
 }

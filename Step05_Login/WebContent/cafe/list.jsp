@@ -4,14 +4,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>/cafe/list.jsp</title>
-<jsp:include page="../include/resource.jsp"></jsp:include>
-</head>
-<body>
 <%
 	//한 페이지에 나타낼 row 의 갯수
 	final int PAGE_ROW_COUNT=5;
@@ -54,12 +46,21 @@
 	List<CafeDto> list=CafeDao.getInstance().getList(dto);
 	//2. 글 목록을 응답한다.
 	
+	//EL, JSTL 을 활용하기 위해 필요한 모델을 request 에 담는다.
 	request.setAttribute("list", list);
 	request.setAttribute("pageNum", pageNum);
 	request.setAttribute("startPageNum", startPageNum);
 	request.setAttribute("endPageNum", endPageNum);
 	request.setAttribute("totalPageCount", totalPageCount);
 %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>/cafe/list.jsp</title>
+<jsp:include page="../include/resource.jsp"></jsp:include>
+</head>
+<body>
 <jsp:include page="../include/navbar.jsp">
 	<jsp:param value="cafe" name="category"/>
 </jsp:include>
