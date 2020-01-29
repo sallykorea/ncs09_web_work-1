@@ -14,6 +14,7 @@
 <h1>인덱스 페이지 입니다.</h1>
 <ul>
 	<li><a href="fortune.do">오늘의 운세 보기</a></li>
+	<li><a href="person.do">오늘의 인물 보기</a></li>
 </ul>
 
 <h3>공지사항</h3>
