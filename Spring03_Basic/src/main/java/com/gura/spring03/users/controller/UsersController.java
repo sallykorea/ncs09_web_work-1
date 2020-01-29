@@ -4,9 +4,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.gura.spring03.users.dto.UsersDto;
 
 @Controller
 public class UsersController {
@@ -43,6 +46,21 @@ public class UsersController {
 		if(id.equals("gura")&&pwd.equals("1234")) {
 			isSuccess=true;
 			session.setAttribute("id", id);
+		}
+		
+		mView.addObject("isSuccess", isSuccess);
+		mView.setViewName("users/login");
+		
+		return mView;
+	}
+	
+	@RequestMapping("/users/login3")
+	public ModelAndView login3(@ModelAttribute UsersDto dto, HttpSession session, ModelAndView mView) {
+		//유효한 정보인지 여부
+		boolean isSuccess=false;
+		if(dto.getId().equals("gura")&&dto.getPwd().equals("1234")) {
+			isSuccess=true;
+			session.setAttribute("id", dto.getId());
 		}
 		
 		mView.addObject("isSuccess", isSuccess);
