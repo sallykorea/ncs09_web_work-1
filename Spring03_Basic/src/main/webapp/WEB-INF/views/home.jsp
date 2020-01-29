@@ -9,27 +9,30 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.css" />
 </head>
 <body>
-<h1>인덱스 페이지 입니다.</h1>
-<c:if test="${not empty id }">
-	<p>
-		<strong>${id }</strong> 님 로그인 중...
-		<a href="users/logout.do">로그 아웃</a>
-	</p>
-</c:if>
-<ul>
-	<li><a href="todo/list.do">할일 목록 보기</a></li>
-	<li><a href="todo/list2.do">할일 목록 보기2</a></li>
-	<li><a href="todo/list3.do">할일 목록 보기3</a></li>
-	<li><a href="users/loginform.do">로그인</a></li>
-	<li><a href="play.do">회원 전용 공간으로 가기</a></li>
-</ul>
-<h3>공지사항</h3>
-<ul>
-	<c:forEach var="tmp" items="${notice }">
-		<li>${tmp }</li>
-	</c:forEach>
-</ul>
+<div class="container">
+	<h1>인덱스 페이지 입니다.</h1>
+	<c:if test="${not empty id }">
+		<p>
+			<strong>${id }</strong> 님 로그인 중...
+			<a href="users/logout.do">로그 아웃</a>
+		</p>
+	</c:if>
+	<ul>
+		<li><a href="todo/list.do">할일 목록 보기</a></li>
+		<li><a href="todo/list2.do">할일 목록 보기2</a></li>
+		<li><a href="todo/list3.do">할일 목록 보기3</a></li>
+		<li><a href="users/loginform.do">로그인</a></li>
+		<li><a href="play.do">회원 전용 공간으로 가기</a></li>
+	</ul>
+	<h3>공지사항</h3>
+	<ul>
+		<c:forEach var="tmp" items="${notice }">
+			<li>${tmp }</li>
+		</c:forEach>
+	</ul>
+</div>
 </body>
 </html>
