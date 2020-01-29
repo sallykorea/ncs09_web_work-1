@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 /*
  *  @Controller 어노테이션
@@ -40,6 +42,18 @@ public class HomeController {
 		 */
 		
 		return "home";
+	}
+	
+	@RequestMapping("/play")
+	public ModelAndView	play(HttpSession session, ModelAndView mView) {
+		String id=(String)session.getAttribute("id");
+		if(id==null) {
+			mView.setViewName("redirect:/users/loginform.do");
+		}else {
+			mView.setViewName("play");
+		}
+		
+		return mView;
 	}
 	
 }
