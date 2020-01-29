@@ -54,6 +54,11 @@ public class UsersController {
 		return mView;
 	}
 	
+	/*
+	 * @ModelAttribute 어노테이션과 함께  Dto를 메소드의 인자로 선언하면
+	 * 전송되는 파라미터가 자동 추출되어서 Dto 객체에 담겨 인자로 전달된다.
+	 * 단, 전송되는 파라미터명과 Dto 의 필드명이 같아야한다.
+	 */
 	@RequestMapping("/users/login3")
 	public ModelAndView login3(@ModelAttribute UsersDto dto, HttpSession session, ModelAndView mView) {
 		//유효한 정보인지 여부
@@ -67,5 +72,20 @@ public class UsersController {
 		mView.setViewName("users/login");
 		
 		return mView;
+	}
+	
+	@RequestMapping("users/logout")
+	public String logout(HttpSession session) {
+		session.invalidate(); //세션 초기화 
+		/*
+		 * redirect 응답 방법
+		 * 
+		 * "view page의 정보를 "redirect: 리다이렉트 시킬 절대 경로"
+		 * 
+		 * 형식으로 작성하면 된다.
+		 * 단, context path는 적지 않는다.
+		 */
+		
+		return "redirect:/home.do";
 	}
 }
