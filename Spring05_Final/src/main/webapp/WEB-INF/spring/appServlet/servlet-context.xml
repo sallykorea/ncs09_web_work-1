@@ -49,7 +49,7 @@
 	
 	<beans:bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource"/>
-		<beans:property name="configLocation" value="classpath:com/gura/spring08/mybatis/Configuration.xml"/>
+		<beans:property name="configLocation" value="classpath:com/gura/spring05/mybatis/Configuration.xml"/>
 	</beans:bean>
 	<!-- 
 		위의 설정을 JAVA code로 환산하면
@@ -59,7 +59,7 @@
 		
 		SqlSessionFactoryBean sessionFactory=new SqlSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource 의 참조 값을 전달);
-		sessionFactory.setConfigLocation("classpath:com/gura/spring08/mybatis/Configuration.xml")
+		sessionFactory.setConfigLocation("classpath:com/gura/spring05/mybatis/Configuration.xml")
 	-->
 	
 	<beans:bean class="org.mybatis.spring.SqlSessionTemplate">
