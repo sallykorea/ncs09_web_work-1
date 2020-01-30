@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MessengerAspect {
 	/*
-	 * 1. 리턴 type은 상관없다.(*  *)
+	 * 1. 리턴 type은 상관없다.(*)
 	 * 2. 메소드 명이 send로 시작하는 메소드(send)
 	 * 3. 메소드에 전달되는 인자도 상관없다.(..)-전달되는 메소드 인자 상관 없음 / (*)-메소드 인자 한개 /(*,*,*)-메소드 인자 세개 /(java.lang.String, *)-첫번째 인자의 type은 String type, 두번째 인자는 아무거나
 	 * 
@@ -17,6 +17,7 @@ public class MessengerAspect {
 	 */
 	// joinPoint 참고 블로그 : http://closer27.github.io/backend/2017/08/03/spring-aop/
 	// joinPoint는 메소드가 적용된 바로 그 지점, @Around에만 joinPoint가 있다.
+	//aop가 적용된 클래스(Messenger Class)와 아래의 코드를 합쳐서 새로운 클래스를 만든다. 그리고 그 클래스의 메소드를 사용하는 것이다.
 	@Around("execution(* send*(..))")
 	public void around(ProceedingJoinPoint joinPoint) throws Throwable {
 		//aop가 적용된 메소드 수행 직전
@@ -37,7 +38,7 @@ public class MessengerAspect {
 				}
 			}
 		}
-		//aop가 적용된 클래스(Messenger Class)와 위의 코드를 합쳐서 새로운 클래스를 만든다. 그리고 그 클래스의 메소드를 사용하는 것이다.
+		
 		
 		//aop가 적용된 메소드 수행하고 리턴되는 값 받아오기(void 면 null 이다.)
 		// proceed()를 사용해야 aop를 적용한 클래스가 수행된다.
@@ -45,5 +46,18 @@ public class MessengerAspect {
 	
 		//aop가 적용된 메소드 리턴 직후
 		System.out.println("---수행직후---");
+	}
+	
+	
+	@Around("execution(String getMessage())")
+	public Object around2(ProceedingJoinPoint joinPoint) throws Throwable {
+		//aop가 적용된 메소드를 수행하고 리턴되는 값을 얻어낸
+		Object obj=joinPoint.proceed();
+		
+		//return 할 값을 조작하기
+		obj="공부 안 해!";
+		
+		//리턴되는 값을 다시 리턴해주기
+		return obj;
 	}
 }
