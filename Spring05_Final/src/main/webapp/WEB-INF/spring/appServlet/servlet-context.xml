@@ -35,16 +35,45 @@
     	
     	위와 같은 DB 접속 정보가 있어야지 동작하는 것과 같다.
 	 -->
-	
+
 	<beans:bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
 		<beans:property name="jndiName" value="java:comp/env/jdbc/myoracle"/>
 	</beans:bean>
+	<!-- 
+		위의 설정을 JAVA code로 환산하면
+		
+		JndiObjectFactoryBean dataSource=new JndiObjectFactoryBean();
+		dataSource.setJndiName("java:comp/env/jdbc/myoracle");
+		
+	-->
+	
 	<beans:bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource"/>
 		<beans:property name="configLocation" value="classpath:com/gura/spring08/mybatis/Configuration.xml"/>
 	</beans:bean>
+	<!-- 
+		위의 설정을 JAVA code로 환산하면
+		
+		JndiObjectFactoryBean dataSource=new JndiObjectFactoryBean();
+		dataSource.setJndiName("java:comp/env/jdbc/myoracle");
+		
+		SqlSessionFactoryBean sessionFactory=new SqlSessionFactoryBean();
+		sessionFactory.setDataSource(dataSource 의 참조 값을 전달);
+		sessionFactory.setConfigLocation("classpath:com/gura/spring08/mybatis/Configuration.xml")
+	-->
+	
 	<beans:bean class="org.mybatis.spring.SqlSessionTemplate">
 		<beans:constructor-arg name="sqlSessionFactory" ref="sessionFactory"/>
 	</beans:bean>
-
+	<!-- 
+		위의 설정을 JAVA code로 환산하면
+		
+		new SqlSessionTemplate(sessionFactory);
+		**<beans:constructor-arg name="sqlSessionFactory" ref="sessionFactory"/>
+		**생성자의 인자로 sessionFactory 참조값을 전달한다.
+		
+		new SqlSessionTemplate(sessionFactory);객체는 DB를 연동하기 위한 핵심 객체이다.
+		**SqlSessionTemplate는 SqlSession 인터페이스를 implements되었다.
+	-->
+	
 </beans:beans>
