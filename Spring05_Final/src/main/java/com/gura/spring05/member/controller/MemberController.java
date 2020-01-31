@@ -46,12 +46,16 @@ public class MemberController {
 	 * 그 객체가 메소드의 인자로 전달된다.
 	 * 단, 파라미터명과 Dto 의 필드명이 일치해야된다.
 	 * 
-	 */
-	
+	 * @ModelAttribute("dto") MemberDto dto
+	 * ("key 명 작성") 하면 작성한 key 명으로 request 객체에 자동으로 인자에 전달된 값을 담아준다.
+	 * 1. 전송되는 파라미터를 자동으로 추출해서 MemberDto에 담아 주기도 하고
+	 * 2. "dto" 라는 키값으로 MemberDto 객체를 request 영역에 담아는 역할도 한다.
+	 * 
+	 */	
 	@RequestMapping("/member/insert")
-	public ModelAndView insert(@ModelAttribute MemberDto dto, ModelAndView mView) {
+	public ModelAndView insert(@ModelAttribute("dto") MemberDto dto, ModelAndView mView) { 
 		dao.insert(dto);
-		mView.addObject("dto", dto);
+		//mView.addObject("dto", dto);
 		mView.setViewName("member/insert");
 		return mView;
 	}
