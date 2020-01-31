@@ -6,4 +6,8 @@
 		FROM todo
 		ORDER BY num ASC
 	</select>
+	<delete id="delete" parameterType="int">
+		DELETE FROM todo
+		WHERE num=#{num}
+	</delete>
 </mapper>

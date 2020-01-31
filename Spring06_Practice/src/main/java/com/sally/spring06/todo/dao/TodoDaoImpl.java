@@ -19,4 +19,9 @@ public class TodoDaoImpl implements TodoDao{
 		List<TodoDto> list=session.selectList("todo.getList");
 		return list;
 	}
+
+	@Override
+	public void delete(int num) {
+		session.delete("todo.delete", num);
+	}
 }
