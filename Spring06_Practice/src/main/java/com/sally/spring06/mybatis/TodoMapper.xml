@@ -10,4 +10,9 @@
 		DELETE FROM todo
 		WHERE num=#{num}
 	</delete>
+	<insert id="insert" parameterType="String">
+		INSERT INTO todo
+		(num, content, regdate)
+		VALUES(todo_seq.NEXTVAL, #{todo}, SYSDATE)
+	</insert>
 </mapper>
