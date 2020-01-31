@@ -15,4 +15,14 @@
 		(num, content, regdate)
 		VALUES(todo_seq.NEXTVAL, #{todo}, SYSDATE)
 	</insert>
+	<select id="getData" parameterType="int" resultType="com.sally.spring06.todo.dto.TodoDto">
+		SELECT num, content, regdate
+		FROM todo
+		WHERE num=#{num}
+	</select>
+	<update id="update" parameterType="com.sally.spring06.todo.dto.TodoDto">
+		UPDATE todo
+		SET content=#{content}, regdate=SYSDATE
+		WHERE num=#{num}
+	</update>
 </mapper>

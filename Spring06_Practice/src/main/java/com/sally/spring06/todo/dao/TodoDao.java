@@ -8,4 +8,6 @@ public interface TodoDao {
 	public List<TodoDto> getList();
 	public void delete(int num);
 	public void insert(String todo);
+	public TodoDto getData(int num);
+	public void update(TodoDto dto);
 }
