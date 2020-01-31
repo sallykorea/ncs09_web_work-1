@@ -42,7 +42,7 @@ public class MessengerAspect {
 		
 		//aop가 적용된 메소드 수행하고 리턴되는 값 받아오기(void 면 null 이다.)
 		// proceed()를 사용해야 aop를 적용한 클래스가 수행된다.
-		Object obj=joinPoint.proceed();
+		Object obj=joinPoint.proceed(); //advice가 적용된 메소드 호출
 	
 		//aop가 적용된 메소드 리턴 직후
 		System.out.println("---수행직후---");

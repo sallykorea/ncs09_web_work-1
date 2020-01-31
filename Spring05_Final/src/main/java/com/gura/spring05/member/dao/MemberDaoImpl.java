@@ -16,8 +16,7 @@ public class MemberDaoImpl implements MemberDao{
 	
 	@Override
 	public List<MemberDto> getList() {
-		List<MemberDto> list=session.selectList("member.getList");
-		
+		List<MemberDto> list=session.selectList("member.getList"); //selectList() : data의 전체 row를 갖고 올 때 사용
 		return list;
 	}
 
@@ -31,6 +30,12 @@ public class MemberDaoImpl implements MemberDao{
 	public void insert(MemberDto dto) {
 		session.insert("member.insert", dto);
 		
+	}
+
+	@Override
+	public MemberDto getData(int num) {
+		MemberDto dto=session.selectOne("member.getData", num); //selectOne() : 하나의 data를 갖고 올 때 사용
+		return dto;
 	}
 
 }
