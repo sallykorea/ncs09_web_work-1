@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lunch">
+	<select id="getList" resultType="com.sally.spring07.lunch.dto.LunchDto">
+		SELECT * 
+		FROM lunch
+		ORDER BY num ASC
+	</select>
+	<insert id="insert" parameterType="String">
+		INSERT INTO lunch(num, menu, regdate)
+		VALUES(lunch_seq, #{menu}, SYSDATE);
+	</insert>
+</mapper>
