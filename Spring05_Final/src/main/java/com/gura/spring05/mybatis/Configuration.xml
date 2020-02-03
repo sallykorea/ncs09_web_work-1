@@ -3,14 +3,15 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
   <configuration>
-  	<typeAliases>
-  		<typeAlias type="com.gura.spring05.member.dto.MemberDto" alias="memberDto"/>
-  		<typeAlias type="com.gura.spring05.users.dto.UsersDto" alias="usersDto"/>
-  	</typeAliases>
+	<typeAliases>
+		<typeAlias type="com.gura.spring05.member.dto.MemberDto" alias="memberDto"/>
+		<typeAlias type="com.gura.spring05.users.dto.UsersDto" alias="usersDto"/>
+	</typeAliases>
+
 	<!-- mapper 설정 -->
 	<mappers>
 		<mapper resource="com/gura/spring05/mybatis/MemberMapper.xml"/>
-		<mapper resource="com/gura/spring05/mabatis/UsersMapper.xml" />
+		<mapper resource="com/gura/spring05/mybatis/UsersMapper.xml"/>
 	</mappers>
 </configuration>
 
