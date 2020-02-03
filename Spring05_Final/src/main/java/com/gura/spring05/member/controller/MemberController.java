@@ -10,28 +10,34 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gura.spring05.member.dao.MemberDao;
-import com.gura.spring05.member.dao.MemberDaoImpl;
 import com.gura.spring05.member.dto.MemberDto;
-
+import com.gura.spring05.member.service.MemberService;
+/*
+ * Controller의 역할
+ * 어떤 service를 이용해서 비즈니스 로직을 처리하고
+ * 어떤 응답페이지로 보낼지 결정한다.
+ * 클라이언트가 요청시 파라미터를 함께 보내면 그 파라미터를 받아서 전달하는 역할도 한다.
+ */
 @Controller
 public class MemberController {
 	//의존 객체 주입 받기 (DI)
-	@Autowired
-	private MemberDao dao;  //MemberDaoImpl type으로 객체의 참조값을 갖고 오면 메소드들의 설명서(?)를 MemberDaoImpl 것으로 갖고 오게 된다. 
+	//@Autowired
+	//private MemberDao dao;  //MemberDaoImpl type으로 객체의 참조값을 갖고 오면 메소드들의 설명서(?)를 MemberDaoImpl 것으로 갖고 오게 된다. 
 							//따라서 MemberDaoImpl을 import 해야하고 그러면 의존관계를 느슨하게 할 수 없게 된다.(스프링의 사용 이유가 사라짐)
 							//위와 같은 이유때문에 interface를 사용해서 메소드를 구현하고, interface type으로 dao 객체의 참조값을 받아오는 것이다. 
+	@Autowired
+	private MemberService service;
 	
 	@RequestMapping("/member/list")
 	public ModelAndView list(ModelAndView mView) {
-		List<MemberDto> list=dao.getList();
-		mView.addObject("list", list);
-		mView.setViewName("member/list"); // WEB-INF/views/member/list.jsp 로 보낸다.
+		service.getList(mView);
+		mView.setViewName("member/list");
 		return mView;
 	}
 	
 	@RequestMapping("/member/delete")
 	public String delete(@RequestParam int num) {
-		dao.delete(num);
+		service.deleteMember(num);
 		return "redirect:/member/list.do";
 	}
 	
@@ -54,7 +60,7 @@ public class MemberController {
 	 */	
 	@RequestMapping("/member/insert")
 	public ModelAndView insert(@ModelAttribute("dto") MemberDto dto, ModelAndView mView) { 
-		dao.insert(dto);
+		service.insert(dto);
 		//mView.addObject("dto", dto);
 		mView.setViewName("member/insert");
 		return mView;
@@ -62,15 +68,14 @@ public class MemberController {
 	
 	@RequestMapping("/member/updateform")
 	public ModelAndView updateform(@RequestParam int num, ModelAndView mView) {
-		MemberDto dto=dao.getData(num);
-		mView.addObject("dto",dto);
+		service.getMember(mView, num);
 		mView.setViewName("member/updateform");
 		return mView;
 	}
 	
 	@RequestMapping("/member/update")
 	public ModelAndView update(@ModelAttribute("dto") MemberDto dto, ModelAndView mView) {
-		dao.update(dto);
+		service.updateMember(dto);
 		mView.setViewName("member/update");
 		return mView;
 	}
