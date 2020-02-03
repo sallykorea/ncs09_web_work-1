@@ -12,24 +12,24 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sally.spring06.todo.dao.TodoDao;
 import com.sally.spring06.todo.dto.TodoDto;
+import com.sally.spring06.todo.service.TodoService;
 
 @Controller
 public class TodoController {
 	
 	@Autowired
-	private TodoDao dao;
+	private TodoService service;
 	
 	@RequestMapping("/todo/list")
 	public ModelAndView list(ModelAndView mView) {
-		List<TodoDto> list=dao.getList();
-		mView.addObject("list", list);
+		service.getList(mView);
 		mView.setViewName("todo/list");
 		return mView;
 	}
 	
 	@RequestMapping("/todo/delete")
 	public String delete(@RequestParam int num) {
-		dao.delete(num);
+		service.delete(num);
 		return "redirect:/todo/list.hello";
 	}
 	
@@ -40,22 +40,21 @@ public class TodoController {
 	
 	@RequestMapping("/todo/insert")
 	public ModelAndView insert(@ModelAttribute("todo") String todo, ModelAndView mView ) {
-		dao.insert(todo);
+		service.insert(todo);
 		mView.setViewName("todo/insert");
 		return mView;
 	}
 	
 	@RequestMapping("/todo/updateform")
 	public ModelAndView updateform(@RequestParam int num, ModelAndView mView) {
-		TodoDto dto=dao.getData(num);
-		mView.addObject("dto", dto);
+		service.getData(num, mView);
 		mView.setViewName("todo/updateform");
 		return mView;
 	}
 	
 	@RequestMapping("/todo/update")
 	public ModelAndView update(@ModelAttribute("dto") TodoDto dto, ModelAndView mView) {
-		dao.update(dto);
+		service.update(dto);
 		mView.setViewName("todo/update");
 		return mView;
 	}
