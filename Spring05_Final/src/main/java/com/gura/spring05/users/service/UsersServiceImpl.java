@@ -127,7 +127,6 @@ public class UsersServiceImpl implements UsersService{
 	@Override
 	public String getEmail(String id, ModelAndView mView) {
 		String oldEmail=dao.getData(id).getEmail();
-		System.out.println(oldEmail);
 		return oldEmail;
 	}
 
@@ -145,6 +144,12 @@ public class UsersServiceImpl implements UsersService{
 			mView.addObject("isSuccess", false);
 		}
 		//4. 만일 동일 하다면 isSuccess false 반환
+		
+	}
+
+	@Override
+	public void delete(String id) {
+		dao.delet(id);
 		
 	}
 

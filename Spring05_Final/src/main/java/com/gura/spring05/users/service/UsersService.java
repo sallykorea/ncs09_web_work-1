@@ -19,4 +19,5 @@ public interface UsersService {
 	public void updatePassword(UsersDto dto, ModelAndView mView);
 	public String getEmail(String id, ModelAndView mView);
 	public void vailEmail(UsersDto dto, ModelAndView mView);
+	public void delete(String id);
 }

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -209,8 +210,6 @@ public class UsersController {
 		String oldEmail=service.getEmail(id, mView);
 		//새로운 이메일
 		String newEmail=(String)request.getParameter("email");
-		System.out.println(oldEmail);
-		System.out.println(newEmail);
 		//dto에 담기 
 		UsersDto dto=new UsersDto();
 		dto.setId(id);
@@ -222,4 +221,11 @@ public class UsersController {
 		return mView;
 	}
 	
+	@RequestMapping("/users/delete")
+	public String authDelete(HttpServletRequest request) {
+		String id=(String)request.getSession().getAttribute("id");
+		service.delete(id);
+		request.getSession().invalidate();
+		return "users/delete";
+	}
 }
