@@ -193,4 +193,14 @@ public class UsersController {
 		mView.setViewName("users/pwd_update");
 		return mView;
 	}
+	
+	@RequestMapping(value = "/users/updateform")
+	public ModelAndView authUpdateForm(HttpServletRequest request, ModelAndView mView) {
+		String id=(String)request.getSession().getAttribute("id");
+		service.getEmail(id, mView);
+		System.out.println(id);
+		mView.setViewName("users/updateform");
+		return mView;
+	}
+	
 }

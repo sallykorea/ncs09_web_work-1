@@ -124,4 +124,10 @@ public class UsersServiceImpl implements UsersService{
 		}
 	}
 
+	@Override
+	public void getEmail(String id, ModelAndView mView) {
+		UsersDto dto=dao.getData(id);
+		mView.addObject("dto", dto);
+	}
+
 }
