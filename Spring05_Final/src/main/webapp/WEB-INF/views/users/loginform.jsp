@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,10 +53,9 @@
 </head>
 <body>
 <div class="container">
-	<form class="form-signin" action="login.jsp" method="post">
+	<form class="form-signin" action="login.do" method="post">
 		<%-- 폼 제출할때 목적지 정보도 같이 보내준다. --%>
 		<input type="hidden" name="url" value="${url }" />
-		
 		<h2 class="form-signin-heading">로그인 정보 입력</h2>
 		<label for="id" class="sr-only">아이디</label>
 		<input type="text" id="id" name="id" class="form-control" 
