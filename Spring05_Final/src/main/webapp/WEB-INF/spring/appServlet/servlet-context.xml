@@ -78,6 +78,11 @@
 		**SqlSessionTemplate는 SqlSession 인터페이스를 implements되었다.
 	-->
 	
+	<!-- 어노테이션 기반으로 폼전송 처리를 위한 bean 설정 -->
 	<aop:aspectj-autoproxy />
 	
+	<!-- 파일업로들 폼 전송처리를 위한 bean 설정 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="1024000"/>
+	</beans:bean>
 </beans:beans>

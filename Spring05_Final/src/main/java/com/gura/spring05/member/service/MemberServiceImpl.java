@@ -2,8 +2,11 @@ package com.gura.spring05.member.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gura.spring05.member.dao.MemberDao;
@@ -41,5 +44,7 @@ public class MemberServiceImpl implements MemberService{
 	public void deleteMember(int num) {
 		dao.delete(num);
 	}
+
+	
 
 }
