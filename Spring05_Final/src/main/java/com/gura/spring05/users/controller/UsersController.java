@@ -126,4 +126,14 @@ public class UsersController {
 		return "redirect:/home.do";
 	}
 	
+	@RequestMapping("/users/info")
+	public ModelAndView authInfo(HttpServletRequest request, ModelAndView mView) {
+		//로그인된 아이디 읽어오기
+		String id=(String)request.getSession().getAttribute("id");
+		//UsersService 객체를 이용해서 개인정보를 ModelAndView 객체에 담기도록한다.
+		service.showInfo(id, mView);
+		//view page 정보를 담고
+		mView.setViewName("users/info");
+		return mView;
+	}
 }
