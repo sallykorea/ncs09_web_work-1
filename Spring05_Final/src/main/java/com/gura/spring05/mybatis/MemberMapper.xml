@@ -17,7 +17,7 @@
 		VALUES(member_seq.NEXTVAL, #{name}, #{addr})
 	</insert>
 	<select id="getData" parameterType="int" resultType="memberDto">
-		SELECT num, name, addr
+		SELECT num,name,addr
 		FROM member
 		WHERE num=#{num}
 	</select>
@@ -26,5 +26,4 @@
 		SET name=#{name}, addr=#{addr}
 		WHERE num=#{num}
 	</update>
-	
 </mapper>

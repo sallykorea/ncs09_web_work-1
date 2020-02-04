@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/users/private/pwd_updateform.jsp</title>
-<jsp:include page="../include/resource.jsp" />
+<title>/users/pwd_updateform.jsp</title>
+<jsp:include page="../include/resource.jsp"/>
 </head>
 <body>
 <div class="container">
@@ -41,7 +41,6 @@
 </script>
 </body>
 </html>
-
 
 
 

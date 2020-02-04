@@ -8,4 +8,5 @@ public interface UsersDao {
 	public String getPwdHash(String inputId); //입력한 id를 이용해서 암호화된 비밀번호를 갖고 와야한다.
 	public UsersDto getData(String id);
 	public void updateProfile(UsersDto dto);
+	public void updatePwd(UsersDto dto);
 }
