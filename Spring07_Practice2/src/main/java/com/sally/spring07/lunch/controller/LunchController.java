@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sally.spring07.lunch.dao.LunchDao;
@@ -36,6 +37,20 @@ public class LunchController {
 		mView.addObject("isSuccess", isSuccess);
 		mView.setViewName("lunch/insert");
 		return mView;
+	}
+	
+	@RequestMapping("/lunch/updateForm")
+	public ModelAndView updateForm(int num, ModelAndView mView) {
+		LunchDto dto=dao.getData(num);
+		System.out.println(dto.getNum());
+		mView.addObject("dto", dto);
+		mView.setViewName("lunch/updateForm");
+		return mView;
+	}
+	
+	@RequestMapping
+	public void update() {
+		
 	}
 	
 }

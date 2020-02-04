@@ -32,6 +32,12 @@ public class LunchDaoImpl implements LunchDao{
 		
 		return isSuccess;
 	}
+
+	@Override
+	public LunchDto getData(int num) {
+		LunchDto dto=session.selectOne("lunch.getData", num);
+		return dto;
+	}
 	
 	
 	

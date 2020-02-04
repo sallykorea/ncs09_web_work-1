@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>로그인 폼입니다. 1</h1>
-<form action="login.do">
+<form action="login.do" method="post">
 	<label for="id">아이디</label>
 	<input type="text" id="id" name="id" />
 	<label for="pwd">비밀번호</label>
@@ -17,7 +17,7 @@
 </form>
 
 <h1>로그인 폼입니다. 2</h1>
-<form action="login2.do">
+<form action="login2.do" method="post">
 	<label for="id">아이디</label>
 	<input type="text" id="id" name="id" />
 	<label for="pwd">비밀번호</label>
@@ -26,7 +26,7 @@
 </form>
 
 <h1>로그인 폼입니다. 3</h1>
-<form action="login3.do">
+<form action="login3.do" method="post">
 	<label for="id">아이디</label>
 	<input type="text" id="id" name="id" />
 	<label for="pwd">비밀번호</label>

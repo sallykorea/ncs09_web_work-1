@@ -8,6 +8,11 @@
 	</select>
 	<insert id="insert" parameterType="String">
 		INSERT INTO lunch(num, menu, regdate)
-		VALUES(lunch_seq, #{menu}, SYSDATE);
+		VALUES(lunch_seq.NEXTVAL, #{menu}, SYSDATE)
 	</insert>
+	<select id="getData" parameterType="int" resultType="com.sally.spring07.lunch.dto.LunchDto">
+		SELECT num, menu, regdate
+		FROM lunch
+		WHERE num=#{num}
+	</select>
 </mapper>

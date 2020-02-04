@@ -8,28 +8,29 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div class="container">
+<div>
+	<h1>목록보기</h1>
 	<table>
 		<thead>
 			<tr>
 				<th>번호</th>
-				<th>메뉴</th>
-				<th>작성일</th>
+				<th>이름</th>
+				<th>전화번호</th>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach var="tmp" items="${list }">
 				<tr>
 					<td>${tmp.num }</td>
-					<td>${tmp.menu }</td>
-					<td>${tmp.regdate }</td>
-					<td><a href="updateForm.nhn?num=${tmp.num }">수정</a></td>
-					<td><a href="delete.nhn?num=${tmp.num }">삭제</a></td>
+					<td>${tmp.name }</td>
+					<td>${tmp.phone }</td>
+					<td><a href="updateForm.do?num=${tmp.num }">수정</a></td>
+					<td><a href="delete.do?num=${tmp.num }">삭제</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-	<a href="insertForm.nhn">점심 메뉴 추가하기</a>
+	<a href="insertForm.do">가족 정보 추가하기</a>
 </div>
 </body>
 </html>
