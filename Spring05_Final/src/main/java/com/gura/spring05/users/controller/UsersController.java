@@ -159,7 +159,6 @@ public class UsersController {
 		 *  Map 객체를 구성해서 리턴해준다. 
 		 */
 		Map<String, Object> map=new HashMap<>();
-		System.out.println(path);
 		map.put("savedPath", path);
 		return map;
 	}
@@ -197,9 +196,29 @@ public class UsersController {
 	@RequestMapping(value = "/users/updateform")
 	public ModelAndView authUpdateForm(HttpServletRequest request, ModelAndView mView) {
 		String id=(String)request.getSession().getAttribute("id");
-		service.getEmail(id, mView);
-		System.out.println(id);
+		service.showInfo(id, mView);
 		mView.setViewName("users/updateform");
+		return mView;
+	}
+	
+	@RequestMapping(value = "/users/update", method = RequestMethod.POST)
+	public ModelAndView authEmailUpdate(HttpServletRequest request, ModelAndView mView) {
+		//로그인된 아이디
+		String id=(String)request.getSession().getAttribute("id");
+		//현재 이메일
+		String oldEmail=service.getEmail(id, mView);
+		//새로운 이메일
+		String newEmail=(String)request.getParameter("email");
+		System.out.println(oldEmail);
+		System.out.println(newEmail);
+		//dto에 담기 
+		UsersDto dto=new UsersDto();
+		dto.setId(id);
+		dto.setEmail(oldEmail);
+		dto.setNewEmail(newEmail);
+		//서비스에 전달
+		service.vailEmail(dto, mView);
+		mView.setViewName("users/update");
 		return mView;
 	}
 	

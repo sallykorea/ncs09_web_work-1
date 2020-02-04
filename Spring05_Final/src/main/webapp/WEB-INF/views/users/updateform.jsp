@@ -8,15 +8,6 @@
 <title>/users/private/updateform.jsp</title>
 </head>
 <body>
-<!-- 
-// session 영역에서 id 읽어오기 
-	String id=(String)session.getAttribute("id");
-	//  id 를 이용해서 가입 정보 얻어오기
-	UsersDto dto=UsersDao.getInstance().getData(id);
-	
-	request.setAttribute("dto", dto);
-
- -->
 <div class="container">
 	<h1>회원정보 수정폼</h1>
 	<form action="update.do" method="post">

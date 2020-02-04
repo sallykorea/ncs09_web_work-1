@@ -41,8 +41,8 @@ public class UsersDaoImpl implements UsersDao{
 
 	@Override
 	public UsersDto getData(String id) {
-
-		return session.selectOne("users.getData", id);
+		UsersDto dto=session.selectOne("users.getData", id);
+		return dto;
 	}
 
 	@Override
@@ -54,6 +54,12 @@ public class UsersDaoImpl implements UsersDao{
 	@Override
 	public void updatePwd(UsersDto dto) {
 		session.update("users.updatePwd", dto);
+		
+	}
+
+	@Override
+	public void updateEmail(UsersDto dto) {
+		session.update("users.updateEmail", dto);
 		
 	}
 

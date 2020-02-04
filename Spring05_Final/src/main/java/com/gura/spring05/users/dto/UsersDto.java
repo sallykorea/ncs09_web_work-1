@@ -7,10 +7,12 @@ public class UsersDto {
 	private String regdate;
 	private String profile; //프로필 이미지 경로를 저장할 필드
 	private String newPwd;
+	private String newEmail;
 	
 	public UsersDto() {}
 
-	public UsersDto(String id, String pwd, String email, String regdate, String profile, String newPwd) {
+	public UsersDto(String id, String pwd, String email, String regdate, String profile, String newPwd,
+			String newEmail) {
 		super();
 		this.id = id;
 		this.pwd = pwd;
@@ -18,6 +20,7 @@ public class UsersDto {
 		this.regdate = regdate;
 		this.profile = profile;
 		this.newPwd = newPwd;
+		this.newEmail = newEmail;
 	}
 
 	public String getId() {
@@ -67,7 +70,15 @@ public class UsersDto {
 	public void setNewPwd(String newPwd) {
 		this.newPwd = newPwd;
 	}
-	
+
+	public String getNewEmail() {
+		return newEmail;
+	}
+
+	public void setNewEmail(String newEmail) {
+		this.newEmail = newEmail;
+	}
+
 	
 	
 }

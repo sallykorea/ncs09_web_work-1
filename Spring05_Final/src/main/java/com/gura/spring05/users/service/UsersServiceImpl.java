@@ -125,9 +125,27 @@ public class UsersServiceImpl implements UsersService{
 	}
 
 	@Override
-	public void getEmail(String id, ModelAndView mView) {
-		UsersDto dto=dao.getData(id);
-		mView.addObject("dto", dto);
+	public String getEmail(String id, ModelAndView mView) {
+		String oldEmail=dao.getData(id).getEmail();
+		System.out.println(oldEmail);
+		return oldEmail;
+	}
+
+	@Override
+	public void vailEmail(UsersDto dto, ModelAndView mView) {
+		//1. 예전 이메일과 지금 변경할 이메일과 동일한지 판단하기
+		String oldEmail=dto.getEmail();
+		String newEmail=dto.getNewEmail();
+		//boolean isValid=false;
+		//3. 만일 동일하지 않다면 db에서 변경하고 isSuccess true 반환
+		if(!newEmail.equals(oldEmail)) {
+			dao.updateEmail(dto);
+			mView.addObject("isSuccess", true);
+		}else {
+			mView.addObject("isSuccess", false);
+		}
+		//4. 만일 동일 하다면 isSuccess false 반환
+		
 	}
 
 }

@@ -31,4 +31,9 @@
 		SET pwd=#{pwd}
 		WHERE id=#{id}
 	</update>
+	<update id="updateEmail" parameterType="usersDto">
+		UPDATE users
+		SET email=#{newEmail,jdbcType=VARCHAR} <!-- mybatis 에서는  nullable column (null 이 들어가도 되는 column)인 경우 column type 을 정해줘야한다. -->
+		WHERE id=#{id}
+	</update>
 </mapper>
