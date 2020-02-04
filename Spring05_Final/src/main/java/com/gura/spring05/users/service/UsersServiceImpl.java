@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.gura.spring05.users.dao.UsersDao;
@@ -14,6 +15,7 @@ public class UsersServiceImpl implements UsersService{
 
 	@Autowired
 	private UsersDao dao;
+	
 	//인자로 전달된 아이디가 존재하는지 여부를 Map 에 담아서 리턴하는 메소드 
 	@Override
 	public Map<String, Object> isExistId(String inputId) {
@@ -25,6 +27,11 @@ public class UsersServiceImpl implements UsersService{
 	
 	@Override
 	public void addUser(UsersDto dto) {
+		//비밀번호를 암호화 한다.
+		String encodedPwd=new BCryptPasswordEncoder().encode(dto.getPwd());
+		//암호화된 비밀번호를 UserDto에 다시 넣어준다.
+		dto.setPwd(encodedPwd);
+		//UserDao 객체를 이용해서 DB에 저장하기
 		dao.insert(dto);
 	}
 

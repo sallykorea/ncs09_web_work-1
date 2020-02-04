@@ -7,7 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class MainClass01 {
 	public static void main(String[] args) {
 		Scanner scan=new Scanner(System.in);
-		System.out.println("문자열 입력 : ");
+		System.out.print("문자열 입력 : ");
 		String str=scan.nextLine();
 		//문자열을 암호화해주는 객체 생성
 		//security.xml 문서에 정의 되어 있는 객체이다.
