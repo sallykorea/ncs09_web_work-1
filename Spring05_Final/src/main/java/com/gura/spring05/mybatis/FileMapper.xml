@@ -16,7 +16,7 @@
 	<insert id="insert" parameterType="fileDto">
 		INSERT INTO board_file
 		(num,writer,title,orgFileName,saveFileName,fileSize,downCount,regdate)
-		VALUES(board_file_seq.NEXTVAL,#{writer},#{title},#{orgFileName},#{saveFileName},#{downCount},#{fileSize},SYSDATE)
+		VALUES(board_file_seq.NEXTVAL,#{writer},#{title},#{orgFileName},#{saveFileName},#{fileSize},#{downCount},SYSDATE)
 	</insert>
 	<select id="getData" parameterType="int" resultType="fileDto">
 		SELECT num,writer,title,orgFileName,saveFileName,fileSize,downCount,regdate
