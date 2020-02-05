@@ -22,4 +22,9 @@ public class FileController {
 		return mView;
 	}
 	
+	@RequestMapping("/file/upload_form")
+	public ModelAndView authUploadForm(HttpServletRequest request) {
+		return new ModelAndView("file/upload_form");
+	}
+	
 }
