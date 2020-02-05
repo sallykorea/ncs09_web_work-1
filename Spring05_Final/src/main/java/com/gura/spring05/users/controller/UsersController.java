@@ -222,10 +222,12 @@ public class UsersController {
 	}
 	
 	@RequestMapping("/users/delete")
-	public String authDelete(HttpServletRequest request) {
+	public ModelAndView authDelete(HttpServletRequest request, ModelAndView mView) {
 		String id=(String)request.getSession().getAttribute("id");
 		service.delete(id);
 		request.getSession().invalidate();
-		return "users/delete";
+		mView.addObject("id", id);
+		mView.setViewName("users/delete");
+		return mView;
 	}
 }
