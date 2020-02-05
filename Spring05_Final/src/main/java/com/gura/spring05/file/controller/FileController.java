@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gura.spring05.file.dto.FileDto;
@@ -34,5 +35,13 @@ public class FileController {
 	public ModelAndView authUpload(HttpServletRequest request, @ModelAttribute FileDto dto) {
 		service.saveFile(request, dto);
 		return new ModelAndView("redirect:/file/list.do");
+	}
+	
+	@RequestMapping("/file/download")
+	public ModelAndView download(ModelAndView mView, @RequestParam int num) {
+		service.getFileData(mView, num);
+		service.addDownCount(num);
+		mView.setViewName("fil/download");
+		return mView;
 	}
 }
