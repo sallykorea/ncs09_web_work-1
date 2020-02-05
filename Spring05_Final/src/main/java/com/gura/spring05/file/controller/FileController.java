@@ -42,6 +42,8 @@ public class FileController {
 		service.getFileData(mView, num);
 		service.addDownCount(num);
 		mView.setViewName("fil/download");
+		mView.setViewName("fileDownView"); // '/views/fileDownView.jsp'를 찾아가기 전에 저 이름이 있는 bean이 존재하는지 찾는다.
 		return mView;
 	}
+	
 }
