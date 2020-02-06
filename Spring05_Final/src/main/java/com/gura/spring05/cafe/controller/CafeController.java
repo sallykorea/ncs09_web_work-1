@@ -40,7 +40,22 @@ public class CafeController {
 	@RequestMapping("/cafe/detail")
 	public ModelAndView showContent(@RequestParam int num, ModelAndView mView) {
 		service.showdetail(num, mView);
-		mView.setViewName("cafe/detail");
+		 mView.setViewName("cafe/detail");
+		return mView;
+	}
+	
+	@RequestMapping("/cafe/updateform")
+	public ModelAndView authUpdateForm(HttpServletRequest request, @RequestParam int num, ModelAndView mView) {
+		service.updateDtailForm(num, mView);
+		mView.setViewName("cafe/updateform");
+		return mView; 
+		// new ModelAndView()로 새로운 객체를 생성해서 return 하면 스프링은 최종적으로 리턴된 값을 읽어간다. 따라서 CafeServiceImpl의  mView에 담은 dto는 읽히지 않는다.
+	}
+	
+	@RequestMapping(value = "/cafe/update")
+	public ModelAndView authUpdate(HttpServletRequest request, @ModelAttribute("dto") CafeDto dto, ModelAndView mView) {
+		service.updateDtail(request, dto);
+		mView.setViewName("cafe/update");
 		return mView;
 	}
 }

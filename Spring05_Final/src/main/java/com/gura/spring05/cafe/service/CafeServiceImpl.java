@@ -99,4 +99,33 @@ public class CafeServiceImpl implements CafeService{
 		//4. 글 정보를 응답한다.
 		mView.addObject("dto", dto);
 	}
+	
+	@Override
+	public void updateDtailForm(int num, ModelAndView mView) {
+		CafeDto dto=dao.getData(num);
+		mView.addObject("dto", dto);
+	}
+
+	@Override
+	public void updateDtail(HttpServletRequest request, CafeDto dto) {
+		//1. 폼 전송되는 파라미터 읽어오기
+		int num=Integer.parseInt(request.getParameter("num"));
+		String title=request.getParameter("title");
+		String content=request.getParameter("content");
+		//글 작성자
+		String writer=(String)request.getSession().getAttribute("id");
+		//CafeDto 객체에 작성자, 제목, 내용을 담고 
+		dto.setNum(num);
+		dto.setWriter(writer);
+		dto.setTitle(title);
+		dto.setContent(content);
+		//2. DB 에 글 정보를 저장하고
+		int isSuccess=dao.update(dto);
+		//3. 응답하기 
+		if(isSuccess>0) {
+			request.setAttribute("isSuccess", true);
+		}else {
+			request.setAttribute("isSuccess", false);
+		}
+	}
 }
