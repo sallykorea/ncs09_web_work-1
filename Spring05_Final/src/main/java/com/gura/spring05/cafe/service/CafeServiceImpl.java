@@ -1,8 +1,10 @@
 package com.gura.spring05.cafe.service;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -121,6 +123,35 @@ public class CafeServiceImpl implements CafeService{
 		dto.setContent(content);
 		//2. DB 에 글 정보를 저장하고
 		int isSuccess=dao.update(dto);
+		//3. 응답하기 
+		if(isSuccess>0) {
+			request.setAttribute("isSuccess", true);
+		}else {
+			request.setAttribute("isSuccess", false);
+		}
+	}
+
+	@Override
+	public void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		//1. 삭제할 글번호를 읽어온다.
+		int num=Integer.parseInt(request.getParameter("num"));
+		
+		//세션의 아이디와 글 작성자를 비교해서 같을때만 삭제한다. 
+		String id=(String)request.getSession().getAttribute("id");
+		//글작성자
+		String writer=dao.getData(num).getWriter();
+		//아이디와 글 작성자와 같은지 여부
+		boolean isEqual=id.equals(writer);
+		if(!isEqual){
+			//에러를 응답하고 
+			response.sendError(HttpServletResponse.SC_FORBIDDEN,
+					"남의 글 삭제 하기 없기!");
+			//메소드를 종료한다.
+			return;
+		}
+		
+		//2. DB 에서 삭제 한다.
+		int isSuccess=dao.delete(num);
 		//3. 응답하기 
 		if(isSuccess>0) {
 			request.setAttribute("isSuccess", true);

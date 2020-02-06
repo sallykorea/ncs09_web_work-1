@@ -1,6 +1,9 @@
 package com.gura.spring05.cafe.service;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.ModelAndView;
 
@@ -12,4 +15,5 @@ public interface CafeService {
 	public void showdetail(int num, ModelAndView mView);
 	public void updateDtailForm(int num, ModelAndView mView);
 	public void updateDtail(HttpServletRequest request, CafeDto dto);
+	public void delete(HttpServletRequest request, HttpServletResponse response) throws IOException;
 }

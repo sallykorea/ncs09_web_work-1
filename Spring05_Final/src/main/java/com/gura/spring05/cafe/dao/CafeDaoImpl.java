@@ -49,4 +49,10 @@ public class CafeDaoImpl implements CafeDao{
 		int isSuccess=session.update("cafe.updateContent", dto);
 		return isSuccess;
 	}
+	
+	@Override
+	public int delete(int num) {
+		int isSuccess=session.delete("cafe.delete", num);
+		return isSuccess;
+	}
 }

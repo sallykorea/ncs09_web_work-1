@@ -1,6 +1,9 @@
 package com.gura.spring05.cafe.controller;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,5 +60,11 @@ public class CafeController {
 		service.updateDtail(request, dto);
 		mView.setViewName("cafe/update");
 		return mView;
+	}
+	
+	@RequestMapping("/cafe/delete")
+	public ModelAndView delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		service.delete(request, response);
+		return new ModelAndView("cafe/delete");
 	}
 }
