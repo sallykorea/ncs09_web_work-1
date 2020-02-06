@@ -66,4 +66,26 @@ public class CafeServiceImpl implements CafeService{
 		request.setAttribute("totalPageCount", totalPageCount);
 		
 	}
+
+	@Override
+	public void saveContent(HttpServletRequest request, CafeDto dto) {
+		//1. 폼 전송되는 파라미터 읽어오기 (글제목, 내용)
+		String title=request.getParameter("title");
+		String content=request.getParameter("content");
+		//글 작성자
+		String writer=(String)request.getSession().getAttribute("id");
+		//CafeDto 객체에 작성자, 제목, 내용을 담고 
+		dto.setWriter(writer);
+		dto.setTitle(title);
+		dto.setContent(content);
+		//2. DB 에 글 정보를 저장하고
+		int isSuccess=dao.insert(dto);
+		//3. 응답하기 
+		if(isSuccess>0) {
+			request.setAttribute("isSuccess", true);
+		}else {
+			request.setAttribute("isSuccess", false);
+		}
+		
+	}
 }

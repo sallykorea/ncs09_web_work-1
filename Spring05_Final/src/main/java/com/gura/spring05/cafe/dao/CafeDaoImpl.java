@@ -24,4 +24,10 @@ public class CafeDaoImpl implements CafeDao{
 		List<CafeDto> list=session.selectList("cafe.getList", dto);
 		return list;
 	}
+
+	@Override
+	public int insert(CafeDto dto) {
+		int isSuccess=session.insert("cafe.insert", dto);
+		return isSuccess;
+	}
 }

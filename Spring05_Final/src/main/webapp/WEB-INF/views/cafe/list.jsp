@@ -52,7 +52,7 @@
 		</tbody>	
 	</table>
 	
-	<a href="private/insertform.do">새글 작성</a>
+	<a href="insertform.do">새글 작성</a>
 	
 	<div class="page-display">
 		<ul class="pagination pagination-sm">
