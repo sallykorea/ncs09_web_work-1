@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.gura.spring05.cafe.dto.CafeDto;
+import com.gura.spring05.users.dto.UsersDto;
 
 @Repository
 public class CafeDaoImpl implements CafeDao{
@@ -29,5 +30,17 @@ public class CafeDaoImpl implements CafeDao{
 	public int insert(CafeDto dto) {
 		int isSuccess=session.insert("cafe.insert", dto);
 		return isSuccess;
+	}
+	
+	@Override
+	public CafeDto getData(int num) {
+		CafeDto dto=session.selectOne("cafe.getData", num);
+		return dto;
+	}
+
+	@Override
+	public void addViewCount(int num) {
+		session.update("cafe.addViewCount", num);
+		
 	}
 }

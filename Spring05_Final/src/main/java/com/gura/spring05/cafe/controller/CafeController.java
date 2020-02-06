@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gura.spring05.cafe.dto.CafeDto;
@@ -33,6 +34,13 @@ public class CafeController {
 	public ModelAndView authUpload(HttpServletRequest request, @ModelAttribute("dto") CafeDto dto, ModelAndView mView) {
 		service.saveContent(request, dto);
 		mView.setViewName("cafe/insert");
+		return mView;
+	}
+	
+	@RequestMapping("/cafe/detail")
+	public ModelAndView showContent(@RequestParam int num, ModelAndView mView) {
+		service.showdetail(num, mView);
+		mView.setViewName("cafe/detail");
 		return mView;
 	}
 }

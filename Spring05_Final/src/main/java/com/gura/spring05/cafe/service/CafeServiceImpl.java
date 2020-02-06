@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.gura.spring05.cafe.dao.CafeDao;
 import com.gura.spring05.cafe.dto.CafeDto;
@@ -87,5 +88,15 @@ public class CafeServiceImpl implements CafeService{
 			request.setAttribute("isSuccess", false);
 		}
 		
+	}
+
+	@Override
+	public void showdetail(int num, ModelAndView mView) {
+		//2. DB 에서 해당 글 정보를 얻어온다.
+		CafeDto dto=dao.getData(num);
+		//3. 해당글의 조회수를 1 증가 시킨다.
+		dao.addViewCount(num);
+		//4. 글 정보를 응답한다.
+		mView.addObject("dto", dto);
 	}
 }
