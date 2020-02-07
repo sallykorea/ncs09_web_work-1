@@ -16,7 +16,7 @@
 	<insert id="insert" parameterType="cafeCommentDto">
 	<!-- 댓글 NUM을 sequence를 통해 먼저 얻어낸 다음에 저장한다.  -->
 		INSERT INTO board_cafe_comment
-		(num, writer, content, target_id, ref_group, comment_group, deleted, board_cafe_comment.regdate)
+		(num, writer, content, target_id, ref_group, comment_group, regdate)
 		VALUES(#{num}, #{writer}, #{content}, #{target_id}, #{ref_group}, #{comment_group}, SYSDATE)
 	</insert>
 	<select id="getSequence" resultType="int">

@@ -109,7 +109,7 @@
 		<a href="javascript:deleteConfirm()">삭제</a>
 	</c:if>
 	<div class="comments">
-		<div class="comment_form">
+		<div class="comment_form" method="post">
 			<!-- 원글에 댓글을 작성할 수 있는 폼 : 누가 쓴 어떤글에 댓글을 작성하는지 파라미터로 담아서 폼 제출시 post 방식으로 전달 -->
 			<form action="comment_insert.do" method="post">
 				<input type="hidden" name="ref_group" value="${dto.num }" /> <!-- 몇번 글의 글번호인지(댓글의 그룹번호) -->

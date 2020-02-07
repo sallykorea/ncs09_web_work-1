@@ -232,9 +232,9 @@ public class CafeServiceImpl implements CafeService{
 			dto.setComment_group(seq);
 		}else {//댓글의 댓글인 경우
 			//comment_group 번호가 댓글의 그룹번호가 된다.
-			dto.setComment_group
-				(Integer.parseInt(comment_group));
+			dto.setComment_group(Integer.parseInt(comment_group));
 		}
+		
 		//댓글 정보를 DB 에 저장한다.
 		cafeCommentDao.insert(dto);
 		
