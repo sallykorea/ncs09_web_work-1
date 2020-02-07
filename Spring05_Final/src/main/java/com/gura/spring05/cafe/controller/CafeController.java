@@ -41,10 +41,9 @@ public class CafeController {
 	}
 	
 	@RequestMapping("/cafe/detail")
-	public ModelAndView showContent(@RequestParam int num, ModelAndView mView) {
-		service.showdetail(num, mView);
-		 mView.setViewName("cafe/detail");
-		return mView;
+	public String  showContent(HttpServletRequest request) {
+		service.showdetail(request);
+		return "cafe/detail";
 	}
 	
 	@RequestMapping("/cafe/updateform")
