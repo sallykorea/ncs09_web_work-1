@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.ModelAndView;
 
+import com.gura.spring05.cafe.dto.CafeCommentDto;
 import com.gura.spring05.cafe.dto.CafeDto;
 
 public interface CafeService {
@@ -19,4 +20,5 @@ public interface CafeService {
 	//댓글 저장하는 메소드
 	public void saveComment(HttpServletRequest request);
 	public void deleteComment(int num);
+	public void updateComment(CafeCommentDto dto);
 }

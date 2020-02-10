@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.gura.spring05.cafe.dto.CafeCommentDto;
 import com.gura.spring05.cafe.dto.CafeDto;
 import com.gura.spring05.cafe.service.CafeService;
 
@@ -81,6 +82,15 @@ public class CafeController {
 	@RequestMapping(value = "/cafe/comment_delete", method = RequestMethod.POST)
 	public Map<String, Object> authCommentDelete(HttpServletRequest request, @RequestParam int num) {
 		service.deleteComment(num);
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("isSuccess", true);
+		return map;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/cafe/comment_update", method = RequestMethod.POST)
+	public Map<String, Object> authCommentUpdate(HttpServletRequest request, @ModelAttribute CafeCommentDto dto) {
+		service.updateComment(dto);
 		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("isSuccess", true);
 		return map;
