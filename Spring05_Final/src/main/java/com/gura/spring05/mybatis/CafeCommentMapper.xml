@@ -6,7 +6,7 @@
 		FROM board_cafe_comment
 		INNER JOIN users ON board_cafe_comment.writer=users.id
 		WHERE ref_group=#{ref_group}
-		ORDER BY comment_group ASC, num ASC
+		ORDER BY comment_group ASC, num ASC <!-- 같은 그룹에 대해 어떤 것을 먼저 출력할지 정함. -->
 	</select>
 	<delete id="delete" parameterType="int">
 		UPDATE board_cafe_comment

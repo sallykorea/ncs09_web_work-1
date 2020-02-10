@@ -221,7 +221,9 @@
 			}
 		});
 		//폼 제출 막기 
-		return false;
+		return false; 
+		//기본 동작(폼에 submit 이벤트가 일어나면 form 제출하면서 새로운 페이지로 이동하게된다.)을 막기 위해 return값을 false로 준다. (jquery에서만 가능)
+		//마치 preventDefault() 메소드를 사용한 것과 같다.(vanilla js에서는 메소드를 사용해야됨)
 	});
 	
 	//댓글 삭제를 눌렀을때 호출되는 함수

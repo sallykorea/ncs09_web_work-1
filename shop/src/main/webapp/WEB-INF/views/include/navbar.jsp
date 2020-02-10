@@ -29,7 +29,6 @@
 		<div class="collapse navbar-collapse" id="one">
 			<ul class="nav navbar-nav">
 				<%-- el은 출력할 데이터가 없으면 null 대신 아무것도 출력하지 않으므로 nullpointexception을 발생시키지 않는다 --%>
-				<li <c:if test="${param.category eq 'home' }">class="active"</c:if>><a href="${pageContext.request.contextPath }/home.do">home</a></li>
 				<li <c:if test="${param.category eq 'cafe' }">class="active"</c:if>><a href="${pageContext.request.contextPath }/cafe/list.do">Cafe</a></li>
 				<li <c:if test="${param.category eq 'file' }">class="active"</c:if>><a href="${pageContext.request.contextPath }/file/list.do">자료실</a></li>
 				<li><a href="#">Shop</a></li>
@@ -38,8 +37,8 @@
 			<c:choose>
 				<c:when test="${empty sessionScope.id }">
 					<div class="pull-right">
-						<a class="btn btn-primary navbar-btn btn-xs" href="${pageContext.request.contextPath }/users/loginform.do">로그인</a>
-						<a class="btn btn-warning navbar-btn btn-xs" href="${pageContext.request.contextPath }/users/signup_form.do">회원가입</a>
+						<a class="btn btn-primary navbar-btn btn-xs" href="${pageContext.request.contextPath }/member/loginform.do">로그인</a>
+						<a class="btn btn-warning navbar-btn btn-xs" href="${pageContext.request.contextPath }/member/signupform.do">회원가입</a>
 					</div>
 				</c:when>
 				<c:otherwise>
@@ -50,7 +49,6 @@
 				</c:otherwise>
 			</c:choose>
 		</div>
-		
 	</div>
 </div>
 
