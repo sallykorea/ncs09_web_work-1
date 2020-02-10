@@ -6,8 +6,7 @@
 		FROM shop
 		ORDER BY num ASC
 	</select>
-	<select id="getPrice" parameterType="int"
-		resultType="int">
+	<select id="getPrice" parameterType="int" resultType="int">
 		SELECT price
 		FROM shop
 		WHERE num=#{num}

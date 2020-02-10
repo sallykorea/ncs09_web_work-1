@@ -5,12 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<jsp:include page="../include/resource.jsp" />
 </head>
 <body>
 <div class="container">
-	<h1>Alert</h1>
-	<p><strong>${dto.name }</strong> 님이 수정되었습니다.</p>
-	<a href="list.do">목록으로 가기</a>
+	<h1>DB 관련 예외 발생!!</h1>
+	<p class="aler alert-danger">${exception.message }</p>
+	<a href="${pageContext.request.contextPath }/home.do">인덱스로 가기</a>
 </div>
 </body>
 </html>

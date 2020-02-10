@@ -66,8 +66,7 @@ CREATE TABLE client_order(
 );
 
 -- 주문 테이블에 사용할 시퀀스 
-CREATE SEQUENCE client_order_seq;
-
+CREATE SEQUENCE client_order_seq
 
 -- sample 데이터
 INSERT INTO shop (num,name,price,remainCount)
@@ -84,3 +83,7 @@ VALUES('superman', 10000, 0);
 
 INSERT INTO client_account (id, money, point)
 VALUES('batman', 10000, 0);
+
+-- 처음부터 다시 시작하고 싶을 때 삭제하고 다시 등록하세요
+DELETE FROM shop;
+DELETE FROM client_account;
