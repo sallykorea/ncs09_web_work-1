@@ -18,4 +18,5 @@ public interface CafeService {
 	public void delete(HttpServletRequest request, HttpServletResponse response) throws IOException;
 	//댓글 저장하는 메소드
 	public void saveComment(HttpServletRequest request);
+	public void deleteComment(int num);
 }

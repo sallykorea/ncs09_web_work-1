@@ -228,6 +228,7 @@
 	function deleteComment(num){
 		var isDelete=confirm("확인을 누르면 댓글이 삭제 됩니다.");
 		if(isDelete){
+			//페이지 전환 없이 ajax 요청을 통해서 삭제하기
 			$.ajax({
 				url:"comment_delete.do",
 				method:"post",
@@ -254,11 +255,11 @@
 	});
 	
 	//답글 달기 링크를 클릭했을때 실행할 함수 등록
-	$(".comment .reply_link").click(function(){
+	$(".comment .`").click(function(){
 		$(this)
 		.parent().parent().parent()
 		.find(".comment-insert-form")
-		.slideToggle(200);
+		.slideToggle(200); //접혀져 있으면 펼치고, 펼쳐져 있으면 접음.
 		
 		// 답글 <=> 취소가 서로 토글 되도록 한다. 
 		if($(this).text()=="답글"){
@@ -267,6 +268,7 @@
 			$(this).text("답글");
 		}
 	});
+	
 	function deleteConfirm(){
 		var isDelete=confirm("글을 삭제 하시 겠습니까?");
 		if(isDelete){

@@ -280,4 +280,12 @@ public class CafeServiceImpl implements CafeService{
 		cafeCommentDao.insert(dto);
 		
 	}
+
+	@Override
+	public void deleteComment(int num) {
+		cafeCommentDao.delete(num);
+		
+	}
+	
+	
 }
