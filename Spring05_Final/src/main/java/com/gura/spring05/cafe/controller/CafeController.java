@@ -95,4 +95,11 @@ public class CafeController {
 		map.put("isSuccess", true);
 		return map;
 	}
+	
+	@RequestMapping(value = "/cafe/more_comment")
+	public String getComment(HttpServletRequest request) {
+		service.showdetail(request);
+		return "cafe/detail?num=${}&pageNum=${}&condition=${}&keyword=${}";
+	}
+	
 }

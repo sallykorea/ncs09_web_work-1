@@ -234,22 +234,27 @@
 	</div>
 </div>
 <script>
-/*
+	var page=1;
 	//댓글 스크롤로 보이기
-	$(window).scroll(function() {
+	$(window).scroll(function(num, condition, keyword) {
+		page++;
 	    if ($(window).scrollTop() == $(document).height() - $(window).height()) {
-	      console.log(++page);
+	      //console.log(++page);
 	     //$(".comments").append("내용");
 	      $.ajax({
-			url:url,
-			method:"post",
-			data:data, //data : 파라미터로 전달할 문자열 
-			success:
+			url:"more_comment.do",
+			method:"get",
+			data:{"num":page, "condition":condition, "keyword":keyword}, //data : 파라미터로 전달할 문자열 
+			success:function(responseData){
+				
+				$(".comments ul").append(responseData);
 				
 			}
+				
+			})
 	    }
 	});
-*/	      
+     
 
 	//댓글 수정 링크를 눌렀을때 호출되는 함수 등록
 	$(".comment-update-link").click(function(){
