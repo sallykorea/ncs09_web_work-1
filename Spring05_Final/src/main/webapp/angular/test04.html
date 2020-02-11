@@ -12,6 +12,14 @@
 	<!-- 
 		html5 의 디폴트 validation 을 해제할때는 novalidate 속성을 form 에 추가한다.  
 		$error 는 object이다. 안에는 $error = {"required":true,"maxlength":false,"minlength":false,"pattern":false} 방이 있다. 각각은 boolean 값으로 관리된다.
+		
+		[정규표현식]
+		[] : 한글자. 대괄호 안에는 한글자에 들어갈 수 있는 후보들을 정의
+		+$ : 한글자에 같은 글자가 '한번' 반복될 수 있다.
+		
+		예시) [a-z][A-Z0-9]+$ : 첫글자는 영어 소문자만 작성가능. 두번째 뒤 부터는 영어 대문자,숫자만 작성 가능
+			 01[0179] : 010, 011, 017, 019가 올 수 있다.
+		
 		/^[a-z]+$/ - 영어 소문자가 한글자 이상있어야한다는 정규 표현식
 	-->
 	<form action="signup" name="myForm" novalidate>
