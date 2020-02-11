@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../resources/css/bootstrap.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.min.js"></script>
+</head>
+<body ng-app>
+<div class="conatiner">
+	<h3>form validation</h3>
+	<!-- 
+		ng-required="true" 일 경우 반드시 입력해야되는 field라고 인식시킨다. 
+		$valid 유효한지 여부
+		$invalid 유효한지 여부
+		$pristine 청결한지 여부. 한번 입력하면 변화된 값은 다시 돌아오지 않는다.
+		$dirty 더러운지 여부. 한번 입력하면 변화된 값은 다시 돌아오지 않는다.
+		
+		예) 어떤 클래스를 추가할지 말지, 어떤 요소를 추가할지 말지
+	-->
+	<form action="signup" name="myForm">
+		<div class="form-group has-feedback" ng-class="{'has-success':myForm.id.$valid,'has-error':myForm.id.$invalid && myForm.id.$dirty}">
+			<label for="id" class="control-label">아이디</label>
+			<input ng-model="id" ng-required="true" type="text" class="form-control" name="id" id="id" />
+			<p class="help-block" ng-show="myForm.id.$invalid && myForm.id.$dirty">반드시 입력 하세요</p>
+			<span class="glyphicon  form-control-feedback" ng-class="{'glyphicon-remove':myForm.id.$invalid && myForm.id.$dirty}"></span>
+			<span class="glyphicon form-control-feedback" ng-class="{'glyphicon-ok':myForm.id.$valid && myForm.id.$dirty}"></span>
+		</div>
+		<div class="form-group has-feedback" ng-class="{'has-success':myForm.pwd.$valid,'has-error':myForm.pwd.$invalid && myForm.id.$dirty}">
+			<label for="pwd" class="control-label" >비밀번호</label>
+			<input ng-model="pwd" ng-required="true" type="text" class="form-control" name="pwd" id="pwd" />
+			<p class="help-block" ng-show="myForm.pwd.$invalid && myForm.pwd.$dirty">반드시 입력 하세요</p>
+			<span class="glyphicon  form-control-feedback" ng-class="{'glyphicon-remove':myForm.pwd.$invalid && myForm.pwd.$dirty}"></span>
+			<span class="glyphicon form-control-feedback" ng-class="{'glyphicon-ok':myForm.pwd.$valid && myForm.pwd.$dirty}"></span>
+		</div>
+		<button ng-disabled="myForm.$invalid" type="submit" class="btn btn-primary">가입</button>
+	</form>
+	<p>myForm.id.$valid=<strong>{{myForm.id.$valid}}</strong></p>
+	<p>myForm.id.$invalid=<strong>{{myForm.id.$invalid}}</strong></p>
+	<p>myForm.id.$pristine=<strong>{{myForm.id.$pristine}}</strong></p>
+	<p>myForm.id.$dirty=<strong>{{myForm.id.$dirty}}</strong></p>
+	
+	<p>myForm.pwd.$valid=<strong>{{myForm.pwd.$valid}}</strong></p>
+	<p>myForm.pwd.$invalid=<strong>{{myForm.pwd.$invalid}}</strong></p>
+	<p>myForm.pwd.$pristine=<strong>{{myForm.pwd.$pristine}}</strong></p>
+	<p>myForm.pwd.$dirty=<strong>{{myForm.pwd.$dirty}}</strong></p>
+	
+	<p>myForm.$valid=<strong>{{myForm.$valid}}</strong></p>
+	<p>myForm.$valid=<strong>{{myForm.$invalid}}</strong></p>
+</div>
+</body>
+</html>
