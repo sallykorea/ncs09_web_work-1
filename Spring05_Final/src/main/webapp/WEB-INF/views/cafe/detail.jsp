@@ -234,6 +234,7 @@
 	</div>
 </div>
 <script>
+
 /*
 	//댓글 스크롤로 보이기
 	$(window).scroll(function() {
@@ -241,8 +242,8 @@
 	      console.log(++page);
 	     //$(".comments").append("내용");
 	      $.ajax({
-			url:url,
-			method:"post",
+			url:"detail.do",
+			method:"get",
 			data:data, //data : 파라미터로 전달할 문자열 
 			success:
 				

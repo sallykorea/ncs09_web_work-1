@@ -17,6 +17,8 @@
 	<h1>인덱스 페이지 입니다.</h1>
 	<ul>
 		<li><a href="member/list.do">회원 목록 보기(member 테이블)</a></li>
+		<!-- 정적인 문서이므로 webapp에 폴더를 만들고 문서를 생성해 주어야함-->
+		<li><a href="angular/test01.html">angular</a></li>
 	</ul>
 	<h3>공지사항</h3>
 	<ul>

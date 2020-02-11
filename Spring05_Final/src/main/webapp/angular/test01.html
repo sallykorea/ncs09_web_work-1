@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.min.js"></script>
+</head>
+<!-- body 안에서 일어나는 일은 default 컨트롤러로 처리 하겠다는 의미 -->
+<body ng-app>
+<div class="container">
+	<!-- ng-xxx 는 디렉티브라고 한다 -->
+	<h1>ng-show ng-hide directive</h1>
+	<img src="../resources/images/kim1.png" ng-show="true" alt="" />
+	<img src="../resources/images/rabbit_1.png" ng-hide="true" alt="" />
+	
+	<br/>
+	<label>
+		<input type="checkbox" ng-model="isChecked" /> 보이게 할지 여부
+	</label>
+	<br/>
+	<img src="../resources/images/image1.png" ng-hide="true" ng-show="isChecked" alt="" />
+	
+	<!-- MVVM framwork 라고도 한다. view 와 model이 양방향을 바인딩 되어 있다.  -->
+	<!-- input 요소에 입력한 문자열을 msg 라는 모델명으로 관리하기 -->
+	<input type="text" ng-model="msg" placeholder="문자열 입력..." />
+	<!-- msg 라는 모델안에 들어 있는 문자열을 view에 출력하기 -->
+	<p>{{msg}}</p>
+	<p ng-bind="msg"></p>
+	
+<!-- 
+	<input type="text" ng-model="msg"/>
+	<p>{{msg}}</p>
+	<input type="checkbox" ng-model="isChecked" />
+	<p>{{isChecked}}</p>
+	<img src="../resources/images/kim1.png" ng-show="isChecked" alt="" />
+	<ul ng-init="nums=[10,20,30,40,50]">
+		<li ng-repeat="tmp in nums">{{tmp}}</li>
+	</ul>
+ -->	
+</div>
+</body>
+</html>
