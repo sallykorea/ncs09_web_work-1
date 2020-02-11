@@ -108,6 +108,7 @@
 		</a>
 		<a href="javascript:deleteConfirm()">삭제</a>
 	</c:if>
+	
 	<div class="comments">
 		<ul>
 		<c:forEach items="${commentList }" var="tmp">
@@ -127,7 +128,7 @@
 										<img class="user-img" src="${pageContext.request.contextPath}${tmp.profile}"/>
 									</c:otherwise>
 								</c:choose>
-
+		
 								<span>${tmp.writer }</span>
 								<c:if test="${tmp.num ne tmp.comment_group }">
 									to <strong>${tmp.target_id }</strong>
@@ -183,6 +184,52 @@
 				<textarea name="content"><c:if test="${empty id }">로그인이 필요합니다.</c:if></textarea> <!-- 로그인을 하지않았을 때 '로그인이 필요합니다' 출력 -->
 				<button type="submit">등록</button>
 			</form>
+		</div>
+		
+		<div class="page-display">
+			<ul class="pagination pagination-sm">
+				<c:choose>
+					<c:when test="${startPageNum ne 1 }">
+						<li>
+							<a href="detail.do?num=${dto.num}&pageNum=${startPageNum-1 }&condition=${condition }&keyword=${encodedKeyword }">&laquo;</a>
+						</li>
+					</c:when>
+					<c:otherwise>
+						<li class="disabled">
+							<a href="javascript:">&laquo;</a>
+						</li>
+					</c:otherwise>
+				</c:choose>
+				
+				<c:forEach var="i" begin="${requestScope.startPageNum }" end="${requestScope.endPageNum }" step="1">
+					<c:choose>
+						<c:when test="${i eq pageNum }">
+							<li class="active">
+								<a href="detail.do?num=${dto.num}&pageNum=${i }&condition=${condition }&keyword=${encodedKeyword }">${i }</a>
+							</li>
+						</c:when>
+						<c:otherwise>
+							<li>
+								<a href="detail.do?num=${dto.num}&pageNum=${i }&condition=${condition }&keyword=${encodedKeyword }">${i }</a>
+							</li>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				
+				<c:choose>
+					<c:when test="${endPageNum < totalPageCount }">
+						<li>
+							<a href="detail.do?num=${dto.num}&pageNum=${endPageNum+1 }&condition=${condition }&keyword=${encodedKeyword }">&raquo;</a>
+						</li>
+					</c:when>
+					
+					<c:otherwise>
+						<li class="disabled">
+							<a href="javascript:">&raquo;</a>
+						</li>
+					</c:otherwise>
+				</c:choose>
+			</ul>
 		</div>
 	</div>
 </div>
@@ -286,7 +333,7 @@
 	});
 	
 	//답글 달기 링크를 클릭했을때 실행할 함수 등록
-	$(".comment .`").click(function(){
+	$(".comment .reply_link").click(function(){
 		$(this)
 		.parent().parent().parent()
 		.find(".comment-insert-form")

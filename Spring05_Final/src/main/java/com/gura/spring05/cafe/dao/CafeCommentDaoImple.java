@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.gura.spring05.cafe.dto.CafeCommentDto;
+import com.gura.spring05.cafe.dto.CafeDto;
 
 @Repository
 public class CafeCommentDaoImple implements CafeCommentDao{
@@ -15,8 +16,8 @@ public class CafeCommentDaoImple implements CafeCommentDao{
 	
 	//인자로 전달된 그룹번호(원글의 글번호)에 해당하는 댓글 목록 얻어오기
 	@Override
-	public List<CafeCommentDto> getList(int ref_group) {
-		return session.selectList("cafeComment.getList", ref_group);
+	public List<CafeCommentDto> getList(CafeDto dto) {
+		return session.selectList("cafeComment.getList", dto);
 	}
 
 	@Override
@@ -45,6 +46,12 @@ public class CafeCommentDaoImple implements CafeCommentDao{
 	public void update(CafeCommentDto dto) {
 		session.update("cafeComment.update", dto);
 		
+	}
+
+	@Override
+	public int getCount() {
+		int count=session.selectOne("cafeComment.getCount");
+		return count;
 	}
 	
 	
