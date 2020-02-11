@@ -95,4 +95,15 @@ public class CafeController {
 		map.put("isSuccess", true);
 		return map;
 	}
+	
+	@RequestMapping(value = "/cafe/more_comment")
+	public ModelAndView getComment(HttpServletRequest request, ModelAndView mView) {
+		System.out.println("hey");
+		service.commentList(request);
+		mView.addObject("id", request.getSession().getAttribute("id"));
+		mView.setViewName("cafe/commentprint");
+		//cafe/detail?num=${}&pageNum=${}&condition=${}&keyword=${}
+		return mView;
+	}
+	
 }

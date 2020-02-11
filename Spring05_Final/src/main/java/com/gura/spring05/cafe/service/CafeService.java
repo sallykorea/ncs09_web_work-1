@@ -21,4 +21,5 @@ public interface CafeService {
 	public void saveComment(HttpServletRequest request);
 	public void deleteComment(int num);
 	public void updateComment(CafeCommentDto dto);
+	public void commentList(HttpServletRequest request);
 }
