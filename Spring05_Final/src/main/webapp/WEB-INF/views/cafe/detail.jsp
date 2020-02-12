@@ -238,18 +238,15 @@
 	var pageNum=1;
 	//댓글 스크롤로 보이기
 	$(window).scroll(function() {
-		
-		//var send=``;"title="+$("#title").val()+"&wirter="+$("#writer").val();
 	    if ($(window).scrollTop() == $(document).height() - $(window).height()) {
 	    	console.log($(window).scrollTop());
 	    	pageNum++;
 	      $.ajax({
 			url:"more_comment.do",
 			method:"get",
-			data:{"pageNum":pageNum}, //data : 파라미터로 전달할 문자열 
+			data:{"pageNum":pageNum, "num":${dto.num}}, //data : 파라미터로 전달할 문자열 
 			dataType:"html",
 			success:function(responseData){
-				console.log(responseData);
 				$(".comments ul").append(responseData);
 
 			}
@@ -260,7 +257,7 @@
      
 
 	//댓글 수정 링크를 눌렀을때 호출되는 함수 등록
-	$(".comment-update-link").click(function(){
+	$(document).on("click", ".comment-update-link", function(){
 		$(this)
 		.parent().parent().parent()
 		.find(".comment-update-form")
@@ -268,7 +265,7 @@
 	});
 	
 	//댓글 수정 폼에 submit 이벤트가 일어났을때 호출되는 함수 등록
-	$(".comment-update-form").on("submit", function(){
+	$(document).on("submit", ".comment-update-form", function(){
 		// "private/comment_update.do"
 		var url=$(this).attr("action"); //action 속성의 value를 읽어온다.
 		//폼에 작성된 내용을 query 문자열로 읽어온다.
@@ -318,7 +315,7 @@
 	}
 	
 	//폼에 submit 이벤트가 일어 났을때 실행할 함수 등록 
-	$(".comments form").on("submit", function(){
+	$(document).on("submit", ".comments form", function(){
 		//로그인 여부
 		var isLogin=${not empty id};
 		if(isLogin==false){
@@ -329,7 +326,7 @@
 	});
 	
 	//폼에 focus 이벤트가 일어 났을때 실행할 함수 등록 
-	$(".comments form textarea").on("click", function(){
+	$(document).on("click", ".comments form textarea", function(){
 		//로그인 여부
 		var isLogin=${not empty id};
 		if(isLogin==false){
@@ -341,7 +338,7 @@
 	});
 	
 	//답글 달기 링크를 클릭했을때 실행할 함수 등록
-	$(".comment .reply_link").click(function(){
+	$(document).on("click", ".comment .reply_link", function(){
 		$(this)
 		.parent().parent().parent()
 		.find(".comment-insert-form")

@@ -7,6 +7,7 @@
 				FROM (SELECT num, writer, content, target_id, ref_group, comment_group, deleted, board_cafe_comment.regdate, profile
 						FROM board_cafe_comment
 						INNER JOIN users ON board_cafe_comment.writer=users.id
+						WHERE ref_group=#{num}
 						ORDER BY comment_group ASC, num ASC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum} <!-- 같은 그룹에 대해 어떤 것을 먼저 출력할지 정함. -->
 	</select>

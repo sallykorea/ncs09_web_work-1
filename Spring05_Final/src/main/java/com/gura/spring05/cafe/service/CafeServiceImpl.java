@@ -148,7 +148,6 @@ public class CafeServiceImpl implements CafeService{
 		
 		//CafeDto 객체 생성 (select 할때 필요한 정보를 담기 위해)
 		CafeDto dto=new CafeDto();
-		dto.setNum(num);
 		if(keyword != null) {//검색 키워드가 전달된 경우
 			if(condition.equals("titlecontent")) {//제목+내용 검색
 				dto.setTitle(keyword);
@@ -225,7 +224,8 @@ public class CafeServiceImpl implements CafeService{
 		
 		//EL, JSTL 을 활용하기 위해 필요한 모델을 request 에 담는다.
 		request.setAttribute("commentList", commentList);
-		request.setAttribute("dto", dto);
+		request.setAttribute("id", request.getSession().getAttribute("id"));
+		//request.setAttribute("dto", dto);
 		
 		
 	}
@@ -339,9 +339,9 @@ public class CafeServiceImpl implements CafeService{
 	public void commentList(HttpServletRequest request) {
 		
 		//파라미터로 전달되는 글번호
-		//int num=Integer.parseInt(request.getParameter("num"));
+		int num=Integer.parseInt(request.getParameter("num"));
 		CafeDto dto=new CafeDto();
-		//dto.setNum(num);
+		dto.setNum(num);
 		////////////////댓글 페이징 처리/////////////////////////
 		//한 페이지에 나타낼 row 의 갯수
 		final int PAGE_ROW_COUNT=8;
