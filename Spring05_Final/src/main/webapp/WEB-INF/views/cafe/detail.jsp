@@ -238,13 +238,14 @@
 	var pageNum=1;
 	//댓글 스크롤로 보이기
 	$(window).scroll(function() {
-		pageNum++;
+		
 		//var send=``;"title="+$("#title").val()+"&wirter="+$("#writer").val();
 	    if ($(window).scrollTop() == $(document).height() - $(window).height()) {
 	    	console.log($(window).scrollTop());
+	    	pageNum++;
 	      $.ajax({
 			url:"more_comment.do",
-			method:"post",
+			method:"get",
 			data:{"pageNum":pageNum}, //data : 파라미터로 전달할 문자열 
 			dataType:"html",
 			success:function(responseData){

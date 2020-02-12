@@ -193,6 +193,7 @@ public class CafeServiceImpl implements CafeService{
 		int pageNum=1;
 		//보여줄 페이지의 번호가 파라미터로 전달되는지 읽어와 본다.	
 		String strPageNum=request.getParameter("pageNum");
+		
 		if(strPageNum != null){//페이지 번호가 파라미터로 넘어온다면
 		//페이지 번호를 설정한다.
 			pageNum=Integer.parseInt(strPageNum);
@@ -334,6 +335,7 @@ public class CafeServiceImpl implements CafeService{
 		
 	}
 	
+	@Override
 	public void commentList(HttpServletRequest request) {
 		
 		//파라미터로 전달되는 글번호
@@ -350,10 +352,13 @@ public class CafeServiceImpl implements CafeService{
 		int pageNum=1;
 		//보여줄 페이지의 번호가 파라미터로 전달되는지 읽어와 본다.	
 		String strPageNum=request.getParameter("pageNum");
+		
 		if(strPageNum != null){//페이지 번호가 파라미터로 넘어온다면
 			//페이지 번호를 설정한다.
 			pageNum=Integer.parseInt(strPageNum);
+			
 		}
+		System.out.println(pageNum);
 		//보여줄 페이지 데이터의 시작 ResultSet row 번호
 		int startRowNum=1+(pageNum-1)*PAGE_ROW_COUNT;
 		//보여줄 페이지 데이터의 끝 ResultSet row 번호
@@ -377,6 +382,7 @@ public class CafeServiceImpl implements CafeService{
 		
 		//1. DB 에서 댓글 목록을 얻어온다.
 		List<CafeCommentDto> commentList=cafeCommentDao.getList(dto);
+		
 		//2. 글 목록을 응답한다.
 		
 		//EL, JSTL 을 활용하기 위해 필요한 모델을 request 에 담는다.

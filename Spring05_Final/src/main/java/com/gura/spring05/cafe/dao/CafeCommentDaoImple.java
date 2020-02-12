@@ -17,7 +17,8 @@ public class CafeCommentDaoImple implements CafeCommentDao{
 	//인자로 전달된 그룹번호(원글의 글번호)에 해당하는 댓글 목록 얻어오기
 	@Override
 	public List<CafeCommentDto> getList(CafeDto dto) {
-		return session.selectList("cafeComment.getList", dto);
+		List<CafeCommentDto> list=session.selectList("cafeComment.getList", dto);
+		return list;
 	}
 
 	@Override
