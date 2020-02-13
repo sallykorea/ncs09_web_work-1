@@ -62,6 +62,10 @@
 		height: 20px;
 		border-radius: 50%;
 	}
+	.glyphicon-thumbs-up:hover,
+	.glyphicon-thumbs-down:hover{
+		cursor: pointer;
+	}
 </style>
 
 </head>
@@ -149,6 +153,15 @@
 								<dd>
 									<pre>${tmp.content }</pre>
 								</dd>
+								<!-- 추천기능 -->
+								<c:if test="${empty id }">
+									<span class="glyphicon glyphicon-thumbs-up" style="padding: 0 30px;"> 0</span>
+									<span class="glyphicon glyphicon-thumbs-down"> 0</span>
+								</c:if>
+								<c:if test="${not empty id }">
+									<span class="glyphicon glyphicon-thumbs-up" style="padding: 0 30px;"> 0</span>
+									<span class="glyphicon glyphicon-thumbs-down"> 0</span>
+								</c:if>
 							</dl>
 							<form class="comment-insert-form" action="comment_insert.do" method="post">
 								<!-- 덧글 그룹 -->
@@ -212,6 +225,16 @@
 	</div>
 </div>
 <script>
+	//좋아요, 싫어요
+	$(document).on("click", ".glyphicon-thumbs-up, .glyphicon-thumbs-down", function(){
+		var login=confirm("로그인이 필요합니다.");
+		if(login){
+			location.href="${pageContext.request.contextPath}/users/loginform.do?url=${pageContext.request.contextPath}/cafe/detail.do?num=${dto.num}";
+		}
+		console.log("클릭햇넹");
+	});
+	
+	
 	var pageNum=1;
 	//댓글 스크롤로 보이기
 	$(window).scroll(function() {

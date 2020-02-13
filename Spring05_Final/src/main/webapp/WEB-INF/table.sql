@@ -87,3 +87,11 @@ VALUES('batman', 10000, 0);
 -- 처음부터 다시 시작하고 싶을 때 삭제하고 다시 등록하세요
 DELETE FROM shop;
 DELETE FROM client_account;
+
+-- 좋아요 table
+-- 참고 블로그 : https://m.blog.naver.com/PostView.nhn?blogId=heartflow89&logNo=221042458016&proxyReferer=https%3A%2F%2Fwww.google.com%2F
+CREATE TABLE comment_like(
+	comment_num NUMBER REFERENCES board_cafe_comment(num),
+	users_id VARCHAR2(30) REFERENCES users(id)
+);
+
