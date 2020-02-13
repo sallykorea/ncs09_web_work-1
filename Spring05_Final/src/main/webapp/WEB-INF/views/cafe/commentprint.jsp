@@ -60,7 +60,31 @@
 			</li>				
 		</c:when>
 		<c:otherwise>
-			<li <c:if test="${tmp.num ne tmp.comment_group }">style="padding-left:50px;"</c:if> >삭제된 댓글 입니다.</li>
-		</c:otherwise>
+				<li class="comment" id="comment${tmp.num }" <c:if test="${tmp.num ne tmp.comment_group }">style="padding-left:50px;"</c:if>>
+					<c:if test="${tmp.num ne tmp.comment_group }">
+						<img class="reply_icon" src="${pageContext.request.contextPath}/resources/images/re.gif"/>
+					</c:if>
+					<dl>
+						<dt>
+							<c:choose>
+								<c:when test="${empty tmp.profile }">
+									<img class="user-img" src="${pageContext.request.contextPath}/resources/images/default_user.jpeg"/>
+								</c:when>
+								<c:otherwise>
+									<img class="user-img" src="${pageContext.request.contextPath}${tmp.profile}"/>
+								</c:otherwise>
+							</c:choose>
+							<span>${tmp.writer }</span>
+							<c:if test="${tmp.num ne tmp.comment_group }">
+								to <strong>${tmp.target_id }</strong>
+							</c:if>
+							<span>${tmp.regdate }</span>
+						</dt>
+						<dd>
+							<pre>삭제된 댓글 입니다.</pre>
+						</dd>
+					</dl>
+				</li>
+			</c:otherwise>
 	</c:choose>
 </c:forEach>

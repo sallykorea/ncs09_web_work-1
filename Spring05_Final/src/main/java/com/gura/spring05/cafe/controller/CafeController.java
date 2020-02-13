@@ -103,7 +103,6 @@ public class CafeController {
 		mView.addObject("id", request.getSession().getAttribute("id"));
 		
 		mView.setViewName("cafe/commentprint");
-		//cafe/detail?num=${}&pageNum=${}&condition=${}&keyword=${}
 		return mView;
 	}
 	

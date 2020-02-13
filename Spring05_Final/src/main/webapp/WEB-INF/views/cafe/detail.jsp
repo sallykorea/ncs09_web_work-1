@@ -170,13 +170,37 @@
 						</li>				
 					</c:when>
 					<c:otherwise>
-						<li <c:if test="${tmp.num ne tmp.comment_group }">style="padding-left:50px;"</c:if> >삭제된 댓글 입니다.</li>
+						<li class="comment" id="comment${tmp.num }" <c:if test="${tmp.num ne tmp.comment_group }">style="padding-left:50px;"</c:if>>
+							<c:if test="${tmp.num ne tmp.comment_group }">
+								<img class="reply_icon" src="${pageContext.request.contextPath}/resources/images/re.gif"/>
+							</c:if>
+							<dl>
+								<dt>
+									<c:choose>
+										<c:when test="${empty tmp.profile }">
+											<img class="user-img" src="${pageContext.request.contextPath}/resources/images/default_user.jpeg"/>
+										</c:when>
+										<c:otherwise>
+											<img class="user-img" src="${pageContext.request.contextPath}${tmp.profile}"/>
+										</c:otherwise>
+									</c:choose>
+									<span>${tmp.writer }</span>
+									<c:if test="${tmp.num ne tmp.comment_group }">
+										to <strong>${tmp.target_id }</strong>
+									</c:if>
+									<span>${tmp.regdate }</span>
+								</dt>
+								<dd>
+									<pre>삭제된 댓글 입니다.</pre>
+								</dd>
+							</dl>
+						</li>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
 		</ul>
 		<div class="clearfix"></div>	
-		<div class="comment_form" method="post">
+		<div class="comment_form">
 			<!-- 원글에 댓글을 작성할 수 있는 폼 : 누가 쓴 어떤글에 댓글을 작성하는지 파라미터로 담아서 폼 제출시 post 방식으로 전달 -->
 			<form action="comment_insert.do" method="post">
 				<input type="hidden" name="ref_group" value="${dto.num }" /> <!-- 몇번 글의 글번호인지(댓글의 그룹번호) -->
@@ -185,53 +209,6 @@
 				<button type="submit">등록</button>
 			</form>
 		</div>
-		<!--
-		<div class="page-display">
-			<ul class="pagination pagination-sm">
-				<c:choose>
-					<c:when test="${startPageNum ne 1 }">
-						<li>
-							<a href="detail.do?num=${dto.num}&pageNum=${startPageNum-1 }&condition=${condition }&keyword=${encodedKeyword }">&laquo;</a>
-						</li>
-					</c:when>
-					<c:otherwise>
-						<li class="disabled">
-							<a href="javascript:">&laquo;</a>
-						</li>
-					</c:otherwise>
-				</c:choose>
-				
-				<c:forEach var="i" begin="${requestScope.startPageNum }" end="${requestScope.endPageNum }" step="1">
-					<c:choose>
-						<c:when test="${i eq pageNum }">
-							<li class="active">
-								<a href="detail.do?num=${dto.num}&pageNum=${i }&condition=${condition }&keyword=${encodedKeyword }">${i }</a>
-							</li>
-						</c:when>
-						<c:otherwise>
-							<li>
-								<a href="detail.do?num=${dto.num}&pageNum=${i }&condition=${condition }&keyword=${encodedKeyword }">${i }</a>
-							</li>
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
-				
-				<c:choose>
-					<c:when test="${endPageNum < totalPageCount }">
-						<li>
-							<a href="detail.do?num=${dto.num}&pageNum=${endPageNum+1 }&condition=${condition }&keyword=${encodedKeyword }">&raquo;</a>
-						</li>
-					</c:when>
-					
-					<c:otherwise>
-						<li class="disabled">
-							<a href="javascript:">&raquo;</a>
-						</li>
-					</c:otherwise>
-				</c:choose>
-			</ul>
-		</div>
-		-->
 	</div>
 </div>
 <script>
