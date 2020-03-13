@@ -7,6 +7,12 @@
 		FROM member
 		ORDER BY num ASC
 	</select>
+	<!-- 안드로이드 테스트용 -->
+	<select id="getList2" resultType="java.util.HashMap">
+		SELECT num, name, addr <!-- select한 colum명이 대문자로 key에 들어간다. -->
+		FROM member
+		ORDER BY num ASC
+	</select>
 	<delete id="delete" parameterType="int">
 		DELETE FROM member
 		WHERE num=#{num}
