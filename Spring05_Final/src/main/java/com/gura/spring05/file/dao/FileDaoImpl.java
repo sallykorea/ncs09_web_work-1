@@ -48,5 +48,12 @@ public class FileDaoImpl implements FileDao{
 		session.delete("file.delete", num);
 	}
 	
+	//안드로이드
+	@Override
+	public void savePicture(FileDto dto) {
+		session.insert("file.insertPic", dto);
+		
+	}
+	
 	
 }

@@ -56,4 +56,13 @@
 		DELETE FROM board_file
 		WHERE num=#{num}
 	</delete>
+	<!-- 안드로이드  -->
+	<insert id="insertPic" parameterType="fileDto">
+		INSERT INTO album
+		(num, writer, imagePath, regdate)
+		VALUES(album_seq.NEXTVAL, #{writer}, #{saveFileName}, sysdate)
+	</insert>
 </mapper>
+
+
+

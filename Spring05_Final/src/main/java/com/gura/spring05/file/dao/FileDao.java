@@ -11,4 +11,6 @@ public interface FileDao {
 	public FileDto getData(int num);
 	public void addDownCount(int num);
 	public void delete(int num);
+	//안드로이드
+	public void savePicture(FileDto dto);
 }
