@@ -13,4 +13,5 @@ public interface MemberDao {
 	public void update(MemberDto dto);
 	//안드로이드 테스트용
 	public List<Map<String, Object>> getList2();
+	public List<Map<String, Object>> memberGetList();
 }	

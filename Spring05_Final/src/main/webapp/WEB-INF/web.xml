@@ -49,8 +49,7 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>	
 	
-	<!-- 404,500 에러 페이지 
-	servelt-context.xml에서 처리하게 할 수 있다.-->
+	<!-- 404,500 에러 페이지 servelt-context.xml에서 처리하게 할 수 있다.-->
 	<error-page>
 		<error-code>404</error-code>
 		<location>/error/404.do</location>

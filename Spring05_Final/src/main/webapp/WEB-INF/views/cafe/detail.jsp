@@ -227,8 +227,12 @@
 <script>
 	//좋아요, 싫어요
 	$(document).on("click", ".glyphicon-thumbs-up, .glyphicon-thumbs-down", function(){
-		var login=confirm("로그인이 필요합니다.");
+		var isLogin=${not empty id};
+		if(isLogin==false){
+		
 		if(login){
+			var isMove=confirm("로그인 페이지로 이동하시겠습니까?");
+		}
 			location.href="${pageContext.request.contextPath}/users/loginform.do?url=${pageContext.request.contextPath}/cafe/detail.do?num=${dto.num}";
 		}
 		console.log("클릭햇넹");

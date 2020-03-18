@@ -51,4 +51,9 @@ public class MemberDaoImpl implements MemberDao{
 		return list;
 	}
 
+	@Override
+	public List<Map<String, Object>> memberGetList() {
+		return session.selectList("member.memberGetList");
+	}
+
 }

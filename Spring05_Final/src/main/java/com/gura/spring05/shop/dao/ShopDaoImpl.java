@@ -15,7 +15,9 @@ public class ShopDaoImpl implements ShopDao{
 
 	@Override
 	public List<ShopDto> getList() {
-		return session.selectList("shop.getList");
+		List<ShopDto> list=session.selectList("shop.getList");
+		System.out.println("list :"+list);
+		return list;
 	}
 
 	@Override
